@@ -16,12 +16,10 @@ class CreateKotaTable extends Migration
         Schema::create('kota', function (Blueprint $table) {
             $table->string('kodeKota',5);
             $table->string('namaKota',30);
-            $table->integer('luasKota');
+            $table->integer('luasKota')->nullable();
             $table->integer('isDelete');
-            $table->date('tanggalBuat');
-            $table->date('tanggalUbah');
-            $table->date('tanggalHapus');
             $table->timestamps();
+            $table->date('tanggalHapus')->nullable();
         });
     }
 
