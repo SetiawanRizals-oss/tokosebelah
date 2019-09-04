@@ -16,9 +16,9 @@ class CreateTokoTable extends Migration
         Schema::create('toko', function (Blueprint $table) {
             $table->string('kodeToko',5);
             $table->string('namaToko',20);
-            $table->integer('ratingToko');
+            $table->integer('ratingToko')->nullable();
             $table->integer('isDelete');
-            $table->date('tanggalHapus');
+            $table->date('tanggalHapus')->nullable();
             $table->primary('kodeToko');
             $table->timestamps();
         });
