@@ -17,9 +17,9 @@ class CreateJenisTable extends Migration
              $table->string('kodeJenis',5);
             $table->primary('kodeJenis');
             $table->string('namaJenis',20);
-            $table->integer('promoJenis');
+            $table->integer('promoJenis')->nullable();
             $table->integer('isDelete');
-            $table->date('tanggalHapus');
+            $table->date('tanggalHapus')->nullable();
             $table->timestamps();
         });
     }
