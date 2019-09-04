@@ -12,5 +12,10 @@
 */
 
 Route::get('/', function () {
-    return view('Jenis.index_jenis');
+    return view('welcome');
 });
+
+Route::post('/produk/add', 'ProdukController@add');
+Route::get('/produk', 'ProdukController@index');
+Route::get('/produk/{id}/edit', 'ProdukController@edit'); //method
+Route::post('/produk/update', 'ProdukController@update'); //method

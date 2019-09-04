@@ -15,6 +15,7 @@ class CreateKotaTable extends Migration
     {
         Schema::create('kota', function (Blueprint $table) {
             $table->string('kodeKota',5);
+            $table->primary('kodeKota');
             $table->string('namaKota',30);
             $table->integer('luasKota')->nullable();
             $table->integer('isDelete');
