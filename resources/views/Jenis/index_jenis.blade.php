@@ -41,8 +41,8 @@ table,th,td{
 	  	<i><h4>Mulai Aja dulu</h4></i>
 	  </center>
 		<div style="text-align: right;">
-            <button class="btn btn-primary ">Home</button>
-			<button class="btn btn-primary " onclick="window.location.href='/settings'">Setting</button>
+            <button class="btn btn-primary" onclick="window.location.href='/'">Home</button>
+			<button class="btn btn-primary" onclick="window.location.href='/settings'">Setting</button>
 
 		</div>
 <hr>
