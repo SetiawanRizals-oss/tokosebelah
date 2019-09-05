@@ -17,7 +17,33 @@
 </head>
 <body>
 	<div class="container">
+		 <center> <img src ="uit.jpg" height="80" width="280">
+	  	<i><h4>Mulai Aja dulu</h4></i>
+	  </center>
+		<div style="text-align: right;">
+            <button class="btn btn-warning active" onclick="window.location.href='/'">Home</button>
+			<button class="btn btn-primary" onclick="window.location.href='/settings'">Setting</button>
+
+		</div>
+<hr>
+		<div class="btn-group btn-group-toggle" data-toggle="buttons">
+            &emsp; &emsp;&emsp; &emsp; &emsp; &emsp;
+		    <button type ="button"class="btn btn-primary btn-sm ;" onclick="window.location.href='/kota'" >Kota
+		    </button>
+		    &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; 
+
+		    <button class="btn btn-primary btn-sm" onclick="window.location.href='/jenis'">Jenis
+		    </button>
+		     &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; 
+		   
+		    <button class="btn btn-primary btn-sm" onclick="window.location.href='/toko'">Toko</button>
+		     &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; 
+		    <button class="btn btn-primary btn-sm" onclick="window.location.href='/produk'">Produk</button>
+		</div><br>
+
 		<div>
+			<br>
+			<br>
 			<table class="table table-bordered" id="bioTable">
 				<thead style="background-color: forestgreen; color: white">
 					<tr>

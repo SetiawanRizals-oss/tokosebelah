@@ -27,6 +27,15 @@ Route::get('/', function () {
 
     return view('halamanutama');
 });
+
+
+Route::get('/settings', function () {
+
+    return view('Settings.setting_index');
+});
+
+
+
 Route::get('/kota','KotaController@index');
 Route::post('/kota/add','KotaController@add');
 Route::get('/kota/edit/{id}','KotaController@edit');
