@@ -176,7 +176,7 @@
  			processing : true,
  			serverside : true,
  			ajax:{
- 				url: "/index",
+ 				url: "/toko",
  			},
  			columns:[
  				{

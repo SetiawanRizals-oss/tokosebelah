@@ -26,7 +26,7 @@ Route::post('/produk/update', 'ProdukController@update'); //method
 Route::get('/', function () {
     return view('toko/toko_index');
 });*/
-Route::get('/index','TokoController@index');
+Route::get('/toko','TokoController@index');
 Route::post('toko/add','TokoController@add');
 Route::get('toko/detail/{id}','TokoController@detail');
 Route::get('toko/edit/{id}','TokoController@edit');
