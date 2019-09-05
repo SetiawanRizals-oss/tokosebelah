@@ -17,48 +17,38 @@
 </head>
 <body>
 	<div class="container">
-		<center> <img src ="uit.jpg" height="80" width="280">
-	  	<i><h4>Mulai Aja dulu</h4></i>
-	  </center>
+		<p style="text-align: center;">Transaksi Produk</p>
+
 		<div style="text-align: right;">
-            <button class="btn btn-primary" onclick="window.location.href='/'">Home</button>
-			<button class="btn btn-primary" onclick="window.location.href='/settings'">Setting</button>
-
+			<button class="btn btn-light active" onclick="window.location.href='/'">Home</button>
+			<button class="btn btn-dark">Setting</button>
 		</div>
-<hr>
-		<div class="btn-group btn-group-toggle" data-toggle="buttons">
-            &emsp; &emsp;&emsp; &emsp; &emsp; &emsp;
-		    <button type ="button"class="btn btn-primary btn-sm ;" onclick="window.location.href='/kota'" >Kota
-		    </button>
-		    &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; 
 
-		    <button class="btn btn-primary btn-sm" onclick="window.location.href='/jenis'">Jenis
-		    </button>
-		     &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; 
-		   
-		    <button class="btn btn-primary btn-sm" onclick="window.location.href='/toko'">Toko</button>
-		     &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; 
-		    <button class="btn btn-warning btn-sm active" onclick="window.location.href='/produk'">Produk</button>
-		</div><br>
+		<div class="btn-group btn-group-toggle" data-toggle="buttons">
+		    <button class="btn btn-light btn-sm" onclick="window.location.href='/toko'">Toko</button>
+		    <button class="btn btn-light btn-sm" onclick="window.location.href='/jenis'">Jenis</button>
+		    <button class="btn btn-light btn-sm" onclick="window.location.href='/kota'">Kota</button>
+		    <button class="btn btn-success btn-sm active" onclick="window.location.href='/produk'">Produk</button>
+		</div><hr><br>
 
 		<div>
 			<span id="notif">
 			</span>
 		</div>
 		<button type="button" class="btn btn-primary" data-toggle="modal" id="buttonAdd">Tambah</button>
-		<div style="text-align: center;">
+		<div>
 			<table class="table table-bordered" id="bioTable">
-				<thead style="background-color: powderblue">
+				<thead style="background-color: forestgreen; color: white">
 					<tr>
 						<th rowspan="2">Kode Produk</th>
 						<th rowspan="2">Nama Produk</th>
 						<th rowspan="2">Status</th>
-						<th colspan="4">Action</th>
+						<th colspan="4">Aksi</th>
 					</tr>
 					<tr>
-						<th>Detail</th>
-						<th>Edit</th>
-						<th>Delete</th>
+						<th>Lihat</th>
+						<th>Ubah</th>
+						<th>Hapus</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -68,7 +58,7 @@
 	<div class="modal" tabindex="-1" role="dialog" id="myModal">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
-					<form id="formProduk">
+					<form id="formProduk" onsubmit="return validate()">
 						@csrf
 						<div class="modal-header">
 							<h5 class="modal-title">Modal Title</h5>
@@ -83,25 +73,25 @@
 								<tr>
 									<td>Kode Produk</td>
 									<td>
-										<input id="kodeProduk" name="kodeProduk" type="text" placeholder="Kode Produk" required="">
+										<input id="kodeProduk" name="kodeProduk" type="text" placeholder="Kode Produk">
 									</td>
 								</tr>
 								<tr>
 									<td>Nama Produk</td>
 									<td>
-										<input id="namaProduk" name="namaProduk" type="text" placeholder="Nama Produk" required="">
+										<input id="namaProduk" name="namaProduk" type="text" placeholder="Nama Produk">
 									</td>
 								</tr>
 								<tr>
 									<td>Harga Produk</td>
 									<td>
-										<input id="hargaProduk" name="hargaProduk" type="text" placeholder="Harga Produk" required="">
+										<input id="hargaProduk" name="hargaProduk" type="text" placeholder="Harga Produk">
 									</td>
 								</tr>
 								<tr>
 									<td>Kota</td>
 									<td>
-										<select id="kota" name="kota" required>
+										<select id="kota" name="kota">
 											<option value="">Pilih Kota</option>
 											@foreach($kotaz as $kota)
 											<option value="{{ $kota->kodeKota }}">{{ $kota->kodeKota }}</option>
@@ -112,7 +102,7 @@
 								<tr>
 									<td>Jenis</td>
 									<td>
-										<select id="jenis" name="jenis" required>
+										<select id="jenis" name="jenis">
 											<option value="">Pilih Jenis</option>
 											@foreach($jenisz as $jenis)
 											<option value="{{ $jenis->kodeJenis }}">{{ $jenis->kodeJenis }}</option>
@@ -123,7 +113,7 @@
 								<tr>
 									<td>Toko</td>
 									<td>
-										<select id="toko" name="toko" required>
+										<select id="toko" name="toko">
 											<option value="">Pilih Toko</option>
 											@foreach($tokoz as $toko)
 											<option value="{{ $toko->kodeToko }}">{{ $toko->kodeToko }}</option>
@@ -134,7 +124,7 @@
 							</table>
 						</div>
 						<div class="modal-footer">
-							<button type="submit" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							<button type="submit" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
 							<button type="submit" id="tombolaction" class="btn btn-primary">Save changes</button>
 						</div>
 					</form>
@@ -149,11 +139,11 @@
 						<button type="button" class="close" data-dismiss="modal" arial-hidden="true">&times;</button>
 					</div>
 					<div class="modal-body">
-						<h4 class="modal-title-delete" style="text-align: center;">Are you sure to delete this information?</h4>
+						<h4 class="modal-title-delete" style="text-align: center;">Anda yakin akan menghapus data?</h4>
 					</div>
 					<div class="modal-footer" style="margin: 0px; border-top: 0px; text-align: center;">
-						<button class="btn btn-danger" id="delete_button">Delete</button>
-						<button type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>				
+						<button class="btn btn-danger" id="delete_button">Hapus</button>
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>				
 					</div>
 				</div>
 			</div>
@@ -165,11 +155,11 @@
 						<button type="button" class="close" data-dismiss="modal" arial-hidden="true">&times;</button>
 					</div>
 					<div class="modal-body">
-						<h4 class="modal-title-delete" style="text-align: center;">Are you sure to reactive this information?</h4>
+						<h4 class="modal-title-delete" style="text-align: center;">Anda yakin akan mengaktifkan data?</h4>
 					</div>
 					<div class="modal-footer" style="margin: 0px; border-top: 0px; text-align: center;">
 						<button class="btn btn-danger" id="aktifkan_button">Aktifkan</button>
-						<button type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>				
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>				
 					</div>
 				</div>
 			</div>
@@ -223,7 +213,7 @@
 							</table>
 						</div>
 						<div class="modal-footer">
-							<button type="submit" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							<button type="submit" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
 						</div>
 					</form>
 				</div>
@@ -286,7 +276,7 @@
 			// alert(action);
 			if (action == "Tambah Data") {
 				if (kodeProduk.length > 5 || kodeProduk.length < 5) {
-					alert('Karakter harus 5 digit');
+					alert('Kode produk harus 5 digit');
 				} else {
 					$.ajax({
 						url:"/produk/add",
@@ -299,13 +289,6 @@
 						success:function(data){
 							var html = '';
 							$('#myModal').modal('hide');
-							// if (data.errors) {
-							// 	html = '<div class="alert alert-danger">';
-							// 	for (var count = 0; count < data.errors.length; count++) {
-							// 		html+='<p>'+data.errors[count]+'</p>';
-							// 	}
-							// 	html+='</div>';
-							// }
 							if (data.success) {
 								html='<div class="alert alert-success alert-dismissible fade show" role="alert"><strong>Selamat! </strong>'+data.success+'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
 								$("#bioTable").DataTable().ajax.reload(); //untuk reload fungsi ajax
@@ -336,9 +319,9 @@
 					$('#kota').val(html.data[0].kodeKota);
 					$('#jenis').val(html.data[0].kodeJenis);
 					$('#toko').val(html.data[0].kodeToko);
-					$('#action').val('Edit Data');
-					$('.modal-title').text('ediiiit Data');
-					$('#tombolaction').text('Edit Data');
+					$('#action').val('Ubah Data');
+					$('.modal-title').text('Ubah Data');
+					$('#tombolaction').text('Ubah Data');
 					$('#myModal').modal('show');
 				}
 			});
@@ -348,9 +331,11 @@
 			event.preventDefault();
 			var action = $("#action").val(); //get value dari value dengan id action
 			var kodeProduk = $("#kodeProduk").val(); //get value dari value dengan id action
-			if (action == "Edit Data") {
+			if (action == "Ubah Data") {
 				if (kodeProduk.length > 5 || kodeProduk.length < 5) {
-					alert('Karakter harus 5 digit');
+					alert('Kode produk harus 5 digit');
+				} else if (namaProduk.length == 0) {
+					alert('Nama produk harus diisi');
 				} else {
 					$.ajax({
 						url:"/produk/update",
@@ -389,7 +374,7 @@
 				url:"/produk/destroy/"+id_delete,
 				
 				beforeSend:function(){
-					$("#delete_button").text('Deleting . . . ');
+					$("#delete_button").text('Sedang mengahapus . . . ');
 				},
 				success:function(){
 					setTimeout(function(){
@@ -440,13 +425,45 @@
 					$('#kotaDetail').text(html.data[0].kodeKota);
 					$('#jenisDetail').text(html.data[0].kodeJenis);
 					$('#tokoDetail').text(html.data[0].kodeToko);
-					$('.modal-title').text('Detail Data');
-					$('#actionDetail').text('Detail Data');
+					$('.modal-title').text('Lihat Data');
+					$('#actionDetail').text('Lihat Data');
 					$('#myModalDetail').modal('show');
 				}
 			});
 		});
-
 	});
+
+	function validate(){
+		var kodeProduk= $("#kodeProduk").val();
+		var namaProduk= $("#namaProduk").val();
+		var hargaProduk= $("#hargaProduk").val();
+		var kodeKota= $("#kodeKota").val();
+		var kodeJenis= $("#kodeJenis").val();
+		var kodeToko= $("#kodeToko").val();
+		if (kodeProduk=="") {
+			alert("Kode produk tidak boleh kosong")
+			return false;
+		}
+		if (namaProduk=="") {
+			alert("Nama produk tidak boleh kosong")
+			return false;
+		}
+		if (hargaProduk=="") {
+			alert("Harga produk tidak boleh kosong")
+			return false;
+		}
+		if (kodeKota=="") {
+			alert("Kode kota tidak boleh kosong")
+			return false;
+		}
+		if (kodeJenis=="") {
+			alert("Kode jenis tidak boleh kosong")
+			return false;
+		}
+		if (kodeToko=="") {
+			alert("Kode toko tidak boleh kosong")
+			return false;
+		}
+	}
 </script>
 </html>

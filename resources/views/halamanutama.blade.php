@@ -17,22 +17,9 @@
 </head>
 <body>
 	<div class="container">
- <center> <img src ="uit.jpg" height="80" width="280">
-	  	<i><h4>Mulai Aja dulu</h4></i>
-	  </center>
-		<div style="text-align: right;">
-            <button class="btn btn-warning" onclick="window.location.href='/'">Home</button>
-			<button class="btn btn-primary" onclick="window.location.href='/settings'">Setting</button>
-
-		</div>
-         <hr>
-		
-
-
-
 		<div>
 			<table class="table table-bordered" id="bioTable">
-				<thead style="background-color: powderblue">
+				<thead style="background-color: forestgreen; color: white">
 					<tr>
 						<th>Nama Produk</th>
 						<th>Harga Produk</th>
@@ -63,16 +50,16 @@
 				name: 'hargaProduk'
 			},
 			{
-				data: 'kodeToko',
-				name: 'kodeToko'
+				data: 'namaToko',
+				name: 'namaToko'
 			},
 			{
-				data: 'kodeJenis',
-				name: 'kodeJenis'
+				data: 'namaJenis',
+				name: 'namaJenis'
 			},
 			{
-				data: 'kodeKota',
-				name: 'kodeKota'
+				data: 'namaKota',
+				name: 'namaKota'
 			}
 			]
 		});

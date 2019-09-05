@@ -12,38 +12,18 @@
 */
 
 
-Route::get('/', function(){
-return view('produk.index_produk');
-});
-
-Route::get('/jenis', function () {
-    return view('Jenis.index_jenis');
-});
-
-Route::get('/settings', function(){
-  return view('/Settings.setting_index');
-});
-
-
-
 Route::get('/halamanutama', 'ProdukController@indexhu');
-
 Route::post('/produk/add', 'ProdukController@add');
 Route::get('/produk', 'ProdukController@index');
 Route::get('/produk/{id}/edit', 'ProdukController@edit'); //method
 Route::post('/produk/update', 'ProdukController@update'); //method
-
-
-Route::get('/', function () {
-    return view('halamanutama');
-});
-
 Route::get('/produk/detail/{id}', 'ProdukController@detail'); //method
 Route::get('/produk/aktif/{id}', 'ProdukController@aktif'); //method
 Route::get('/produk/destroy/{id}', 'ProdukController@destroy'); //method
 
-
-
+Route::get('/', function () {
+    return view('halamanutama');
+});
 Route::get('/index','KotaController@index');
 Route::post('/kota/add','KotaController@add');
 Route::get('/kota/edit/{id}','KotaController@edit');
@@ -51,8 +31,6 @@ Route::post('/kota/update','KotaController@update');
 Route::get('/kota/detail/{id}','KotaController@detail');
 Route::get('/kota/delete/{id}','KotaController@delete');
 Route::get('/kota/aktif/{id_aktif}','kotaController@aktif');
-
-
 
 Route::get('/toko','TokoController@index');
 Route::post('toko/add','TokoController@add');
