@@ -11,8 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/jenis', function () {
+    return view('Jenis.index_jenis');
 });
 
 Route::post('/produk/add', 'ProdukController@add');
@@ -35,7 +35,7 @@ Route::post('toko/update','TokoController@update');
 Route::get('toko/aktif/{id_aktif}','TokoController@aktif');
 
 
-Route::get('/jenis','JenisController@index');
+Route::get('/jenis_looks','JenisController@index');
 Route::post('/jenis/add','JenisController@add');
 Route::get('jenis/detail/{id}','JenisController@detail');
 Route::get('jenis/edit/{id}','JenisController@edit');
