@@ -14,6 +14,7 @@ class CreateKotaTable extends Migration
     public function up()
     {
         Schema::create('kota', function (Blueprint $table) {
+            $table->primary('kodeKota');
             $table->string('kodeKota',5);
             $table->primary('kodeKota');
             $table->string('namaKota',30);

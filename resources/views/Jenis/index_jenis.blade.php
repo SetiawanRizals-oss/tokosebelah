@@ -47,17 +47,17 @@ table,th,td{
 		</div>
 <hr>
 		<div class="btn-group btn-group-toggle" data-toggle="buttons">
-            &emsp; &emsp;&emsp; &emsp; &emsp; &emsp;&emsp;
+            &emsp; &emsp;&emsp; &emsp; &emsp; &emsp;
 		    <button type ="button"class="btn btn-primary btn-sm ;" onclick="window.location.href='/kota'" >Kota
 		    </button>
-		    &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;
+		    &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; 
 
 		    <button class="btn btn-warning btn-sm active" onclick="window.location.href='/jenis'">Jenis
 		    </button>
-		     &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;
+		     &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; 
 		   
 		    <button class="btn btn-primary btn-sm" onclick="window.location.href='/toko'">Toko</button>
-		     &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; 
+		     &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; 
 		    <button class="btn btn-primary btn-sm" onclick="window.location.href='/produk'">Produk</button>
 		</div><br>
 
@@ -66,12 +66,13 @@ table,th,td{
 
 </span>
 
-
 <button type="button" class="btn btn-primary" data-toggle="modal" id="modalAdd">
 		Tambah
 	</button>
+	<br>
+
 <table class="table table-striped" id="bioTable" > 
-	<thead style="text-align: center; color:yellow; background:grey;">
+	<thead style="text-align: center; color:black; background:forestgreen;">
           <tr>
           <th>Kode Jenis </th>
           <th>Nama Jenis</th>
@@ -124,7 +125,7 @@ table,th,td{
 			      	</div>
 			      	<div class="modal-footer">
 			        	<button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-			        	<button type="submit" id="tombol_action" class="btn btn-primary">Tambah Data</button>
+			        	<button type="submit" id="tombol_action" class="btn btn-warning">Tambah Data</button>
 			      	</div>
 			  </form>
 		    </div>

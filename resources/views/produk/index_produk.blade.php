@@ -17,7 +17,30 @@
 </head>
 <body>
 	<div class="container">
-		<p style="text-align: center;">Transaksi Produk</p>
+		<center> <img src ="uit.jpg" height="80" width="280">
+	  	<i><h4>Mulai Aja dulu</h4></i>
+	  </center>
+		<div style="text-align: right;">
+            <button class="btn btn-primary" onclick="window.location.href='/'">Home</button>
+			<button class="btn btn-primary" onclick="window.location.href='/settings'">Setting</button>
+
+		</div>
+<hr>
+		<div class="btn-group btn-group-toggle" data-toggle="buttons">
+            &emsp; &emsp;&emsp; &emsp; &emsp; &emsp;
+		    <button type ="button"class="btn btn-primary btn-sm ;" onclick="window.location.href='/kota'" >Kota
+		    </button>
+		    &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; 
+
+		    <button class="btn btn-primary btn-sm" onclick="window.location.href='/jenis'">Jenis
+		    </button>
+		     &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; 
+		   
+		    <button class="btn btn-primary btn-sm" onclick="window.location.href='/toko'">Toko</button>
+		     &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; 
+		    <button class="btn btn-warning btn-sm active" onclick="window.location.href='/produk'">Produk</button>
+		</div><br>
+
 		<div>
 			<span id="notif">
 			</span>
@@ -29,7 +52,7 @@
 					<tr>
 						<th rowspan="2">Kode Produk</th>
 						<th rowspan="2">Nama Produk</th>
-						<th rowspan="2">Aksi</th>
+						<th rowspan="2">Status</th>
 						<th colspan="4">Action</th>
 					</tr>
 					<tr>
@@ -78,7 +101,7 @@
 								<tr>
 									<td>Kota</td>
 									<td>
-										<select id="kota" name="kota">
+										<select id="kota" name="kota" required>
 											<option value="">Pilih Kota</option>
 											@foreach($kotaz as $kota)
 											<option value="{{ $kota->kodeKota }}">{{ $kota->kodeKota }}</option>
@@ -89,7 +112,7 @@
 								<tr>
 									<td>Jenis</td>
 									<td>
-										<select id="jenis" name="jenis">
+										<select id="jenis" name="jenis" required>
 											<option value="">Pilih Jenis</option>
 											@foreach($jenisz as $jenis)
 											<option value="{{ $jenis->kodeJenis }}">{{ $jenis->kodeJenis }}</option>
@@ -100,7 +123,7 @@
 								<tr>
 									<td>Toko</td>
 									<td>
-										<select id="toko" name="toko">
+										<select id="toko" name="toko" required>
 											<option value="">Pilih Toko</option>
 											@foreach($tokoz as $toko)
 											<option value="{{ $toko->kodeToko }}">{{ $toko->kodeToko }}</option>
@@ -118,6 +141,95 @@
 				</div>
 			</div>
 		</div>
+
+		<div class="modal fade" id="myModalDelete">
+			<div class="modal-dialog">
+				<div class="modal-content" style="margin-top: 100px">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" arial-hidden="true">&times;</button>
+					</div>
+					<div class="modal-body">
+						<h4 class="modal-title-delete" style="text-align: center;">Are you sure to delete this information?</h4>
+					</div>
+					<div class="modal-footer" style="margin: 0px; border-top: 0px; text-align: center;">
+						<button class="btn btn-danger" id="delete_button">Delete</button>
+						<button type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>				
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="myModalAktifkan">
+			<div class="modal-dialog">
+				<div class="modal-content" style="margin-top: 100px">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" arial-hidden="true">&times;</button>
+					</div>
+					<div class="modal-body">
+						<h4 class="modal-title-delete" style="text-align: center;">Are you sure to reactive this information?</h4>
+					</div>
+					<div class="modal-footer" style="margin: 0px; border-top: 0px; text-align: center;">
+						<button class="btn btn-danger" id="aktifkan_button">Aktifkan</button>
+						<button type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>				
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="modal" tabindex="-1" role="dialog" id="myModalDetail">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<form id="formProduk">
+						@csrf
+						<div class="modal-header">
+							<h5 class="modal-title">Modal Title</h5>
+							
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+					      	<input type="hidden" name="action" id="action">
+							<table class="table table-bordered" id="bioTable">
+								<tr>
+									<td>Kode Produk</td>
+									<td id="kodeProdukDetail">
+									</td>
+								</tr>
+								<tr>
+									<td>Nama Produk</td>
+									<td id="namaProdukDetail">
+									</td>
+								</tr>
+								<tr>
+									<td>Harga Produk</td>
+									<td id="hargaProdukDetail">
+									</td>
+								</tr>
+								<tr>
+									<td>Kota</td>
+									<td id="kotaDetail">
+									</td>
+								</tr>
+								<tr>
+									<td>Jenis</td>
+									<td id="jenisDetail">
+									</td>
+								</tr>
+								<tr>
+									<td>Toko</td>
+									<td id="tokoDetail">
+									</td>
+								</tr>
+							</table>
+						</div>
+						<div class="modal-footer">
+							<button type="submit" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
 	</div>
 </body>
 <script type="text/javascript">
@@ -212,6 +324,26 @@
 			}
 		});
 
+		$(document).on('click','.edit',function(){ //jika tombol berada difile lain
+			var id = $(this).attr('id');
+			$.ajax({
+				url:"/produk/"+id+"/edit",
+				dataType: "json",
+				success:function(html){
+					$('#kodeProduk').val(html.data[0].kodeProduk);
+					$('#namaProduk').val(html.data[0].namaProduk);
+					$('#hargaProduk').val(html.data[0].hargaProduk);
+					$('#kota').val(html.data[0].kodeKota);
+					$('#jenis').val(html.data[0].kodeJenis);
+					$('#toko').val(html.data[0].kodeToko);
+					$('#action').val('Edit Data');
+					$('.modal-title').text('ediiiit Data');
+					$('#tombolaction').text('Edit Data');
+					$('#myModal').modal('show');
+				}
+			});
+		});
+
 		$("#formProduk").on('submit',function(event){
 			event.preventDefault();
 			var action = $("#action").val(); //get value dari value dengan id action
@@ -245,25 +377,76 @@
 		 	}
 		});
 
-		$(document).on('click','.edit',function(){ //jika tombol berada difile lain
-			var id = $(this).attr('id');
+		var id_delete;
+		$(document).on('click','.delete',function(){ //jika tombol berada difile lain
+			id_delete = $(this).attr('id');
+			$("#myModalDelete").modal("show");			
+		});
+
+		//action delete
+		$("#delete_button").click(function(){
 			$.ajax({
-				url:"/produk/"+id+"/edit",
+				url:"/produk/destroy/"+id_delete,
+				
+				beforeSend:function(){
+					$("#delete_button").text('Deleting . . . ');
+				},
+				success:function(){
+					setTimeout(function(){
+						$("#myModalDelete").modal('hide');
+
+						$("#delete_button").text('OK');
+						$("#bioTable").DataTable().ajax.reload();
+					},500);
+
+				}
+			});
+		});//action delete
+
+		var id_aktif;
+		$(document).on('click','.aktifkan',function(){ //jika tombol berada difile lain
+			id_aktif = $(this).attr('id');
+			$("#myModalAktifkan").modal("show");			
+		});
+
+		//action aktifkan
+		$("#aktifkan_button").click(function(){
+			$.ajax({
+				url:"/produk/aktif/"+id_aktif,
+				
+				beforeSend:function(){
+					$("#delete_button").text('Deleting . . . ');
+				},
+				success:function(){
+					setTimeout(function(){
+						$("#myModalAktifkan").modal('hide');
+						$("#delete_button").text('OK');
+						$("#bioTable").DataTable().ajax.reload();
+					},500);
+				}
+			});
+		});//action aktifkan
+
+		var id_detail;
+		$(document).on('click','.detail',function(){ //jika tombol berada difile lain
+			var id_detail = $(this).attr('id');
+			$.ajax({
+				url:"/produk/detail/"+id_detail,
 				dataType: "json",
 				success:function(html){
-					$('#kodeProduk').val(html.data[0].kodeProduk);
-					$('#namaProduk').val(html.data[0].namaProduk);
-					$('#hargaProduk').val(html.data[0].hargaProduk);
-					$('#kota').val(html.data[0].kodeKota);
-					$('#jenis').val(html.data[0].kodeJenis);
-					$('#toko').val(html.data[0].kodeToko);
-					$('#action').val('Edit Data');
-					$('.modal-title').text('ediiiit Data');
-					$('#tombolaction').text('Edit Data');
-					$('#myModal').modal('show');
+					$('#kodeProdukDetail').text(html.data[0].kodeProduk);
+					$('#namaProdukDetail').text(html.data[0].namaProduk);
+					$('#hargaProdukDetail').text(html.data[0].hargaProduk);
+					$('#kotaDetail').text(html.data[0].kodeKota);
+					$('#jenisDetail').text(html.data[0].kodeJenis);
+					$('#tokoDetail').text(html.data[0].kodeToko);
+					$('.modal-title').text('Detail Data');
+					$('#actionDetail').text('Detail Data');
+					$('#myModalDetail').modal('show');
 				}
 			});
 		});
+
 	});
 </script>
 </html>

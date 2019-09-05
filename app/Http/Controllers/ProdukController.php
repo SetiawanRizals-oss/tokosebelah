@@ -48,6 +48,39 @@ class ProdukController extends Controller
         // return view('produk.index_produk',['jenisz'=>$jenisz],['kotaz'=>$kotaz],['tokoz'=>$tokoz]);
     }
 
+    public function indexhu()
+    {
+        if (request()->ajax()) {
+            return datatables()->of(produk::latest()->get())
+            ->addColumn('detail',function($data){
+                $button = '<button type="button" name="detail" id="'.$data->kodeProduk.'" class="detail btn btn-success btn-sm">Detail</button>';
+                return $button;
+            })
+            ->addColumn('edit',function($data){
+                $button = '<button type="button" name="edit" id="'.$data->kodeProduk.'" class="edit btn btn-primary btn-sm">Edit</button>';
+                return $button;
+            })
+            ->addColumn('delete',function($data){
+                $button = '<button type="button" name="delete" id="'.$data->kodeProduk.'" class="delete btn btn-danger btn-sm">Delete</button>';
+                return $button;
+            })
+            ->addColumn('aksi',function($data){
+                if ($data->isDelete==1) {
+                    $button = '<button type="button" id="'.$data->kodeProduk.'" class="aktif btn btn btn-outline-success btn-sm">Aktif</button>';
+                } else {
+                    $button = '<button type="button" id="'.$data->kodeProduk.'" class="nonaktif btn btn-outline-warning btn-sm">Nonaktif</button>'; //tombol detail
+                    $button .= "&nbsp;&nbsp;"; //untuk spasi
+                    $button .= '<button type="button" name="aktifkan" id="'.$data->kodeProduk.'" class="aktifkan btn btn-info btn-sm">Aktifkan</button>'; //tombol detail
+                }
+
+                return $button;
+            })
+            ->rawColumns(array("detail","edit","delete","aksi"))
+            ->make(true);
+        }
+        // return view('produk.index_produk',['jenisz'=>$jenisz],['kotaz'=>$kotaz],['tokoz'=>$tokoz]);
+    }
+
     public function add(Request $request){
         $isDelete = 1;
         $form_data = array(
@@ -91,6 +124,36 @@ class ProdukController extends Controller
         );
 
         produk::where('kodeProduk', '=',$request->kodeProduk)->update($form_data);
+        return response()->json(['success'=>'Data is successfully update']);
+    }
+
+    public function detail(request $request,$kodeProduk)
+    {
+        if ($request->ajax()) {
+            $data = produk::where('kodeProduk', '=',$kodeProduk)->get();
+            return response()->json(['data'=>$data]);
+        }
+    }
+
+    public function destroy($kodeProduk)
+    {
+        $isDelete = 0;
+        $form_data = array(
+            'isDelete' => $isDelete
+        );
+        produk::where('kodeProduk','=',$kodeProduk)->update($form_data);
+
+        return response()->json(['success'=>'Data is successfully update']);
+    }
+
+    public function aktif($kodeProduk)
+    {
+        $isDelete = 1;
+        $form_data = array(
+            'isDelete' => $isDelete
+        );
+        produk::where('kodeProduk','=', $kodeProduk)->update($form_data);
+
         return response()->json(['success'=>'Data is successfully update']);
     }
 }
