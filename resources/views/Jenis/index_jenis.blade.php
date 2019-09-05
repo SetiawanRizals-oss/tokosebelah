@@ -10,6 +10,7 @@ table,th,td{
 	
 }
 
+
 	</style>
 	<script type="text/javascript" src="assets/js/jquery.min.js"></script>
 	<script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
@@ -18,29 +19,6 @@ table,th,td{
 
 <body>
 
-
-
-
-
-
-
-
-
-
-
-<h2 style="text-align: center;">Data Jenis</h2><hr>
-		<div style="text-align: right;">
-			<button class="btn btn-light active">Home</button>
-			<button class="btn btn-dark">Setting</button>
-		</div>
-
-		<div class="btn-group btn-group-toggle" data-toggle="buttons">
-		    <button class="btn btn-light btn-sm" onclick="window.location.href='/toko'">Toko</button>
-		    <button class="btn btn-success btn-sm active" onclick="window.location.href='/jenis'">Jenis
-		    </button>
-		    <button class="btn btn-light btn-sm" onclick="window.location.href='/kota'">Kota</button>
-		    <button class="btn btn-light btn-sm" onclick="window.location.href='/produk'">Produk</button>
-		</div><hr><br>
 
 
 
@@ -59,6 +37,31 @@ table,th,td{
 
 </table> -->
 <div class="container">
+	  <center> <img src ="uit.jpg" height="80" width="280">
+	  	<i><h4>Mulai Aja dulu</h4></i>
+	  </center>
+		<div style="text-align: right;">
+            <button class="btn btn-primary ">Home</button>
+			<button class="btn btn-primary " onclick="window.location.href='/settings'">Setting</button>
+
+		</div>
+<hr>
+		<div class="btn-group btn-group-toggle" data-toggle="buttons">
+            &emsp; &emsp;&emsp; &emsp; &emsp; &emsp;&emsp;
+		    <button type ="button"class="btn btn-primary btn-sm ;" onclick="window.location.href='/kota'" >Kota
+		    </button>
+		    &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;
+
+		    <button class="btn btn-warning btn-sm active" onclick="window.location.href='/jenis'">Jenis
+		    </button>
+		     &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;
+		   
+		    <button class="btn btn-primary btn-sm" onclick="window.location.href='/toko'">Toko</button>
+		     &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; 
+		    <button class="btn btn-primary btn-sm" onclick="window.location.href='/produk'">Produk</button>
+		</div><br>
+
+	<h5 style="text-align: center;">Data Jenis</h5>
 <span id="notif">
 
 </span>

@@ -11,14 +11,23 @@
 |
 */
 
+Route::get('/', function(){
+return view('produk.index_produk');
+});
+
 Route::get('/jenis', function () {
     return view('Jenis.index_jenis');
+});
+
+Route::get('/settings', function(){
+  return view('/Settings.setting_index');
 });
 
 Route::post('/produk/add', 'ProdukController@add');
 Route::get('/produk', 'ProdukController@index');
 Route::get('/produk/{id}/edit', 'ProdukController@edit'); //method
 Route::post('/produk/update', 'ProdukController@update'); //method
+
 /*Route::get('/', function () {
     return view('welcome');
 });
