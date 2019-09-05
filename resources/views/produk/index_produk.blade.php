@@ -17,7 +17,9 @@
 </head>
 <body>
 	<div class="container">
-		<p style="text-align: center;">Transaksi Produk</p>
+		<center> <img src ="uit.jpg" height="80" width="280">
+			<i><h4>Mulai Aja dulu</h4></i>
+		</center>
 
 		<div style="text-align: right;">
 			<button class="btn btn-light active" onclick="window.location.href='/'">Home</button>
@@ -25,16 +27,26 @@
 		</div>
 
 		<div class="btn-group btn-group-toggle" data-toggle="buttons">
-		    <button class="btn btn-light btn-sm" onclick="window.location.href='/toko'">Toko</button>
-		    <button class="btn btn-light btn-sm" onclick="window.location.href='/jenis'">Jenis</button>
-		    <button class="btn btn-light btn-sm" onclick="window.location.href='/kota'">Kota</button>
-		    <button class="btn btn-success btn-sm active" onclick="window.location.href='/produk'">Produk</button>
-		</div><hr><br>
+            &emsp; &emsp;&emsp; &emsp; &emsp; &emsp;
+		    <button type ="button"class="btn btn-primary btn-sm ;" onclick="window.location.href='/kota'" >Kota
+		    </button>
+		    &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; 
+
+		    <button class="btn btn-primary btn-sm" onclick="window.location.href='/jenis'">Jenis
+		    </button>
+		     &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; 
+		   
+		    <button class="btn btn-primary btn-sm" onclick="window.location.href='/toko'">Toko</button>
+		     &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; 
+		    <button class="btn btn-warning btn-sm active" onclick="window.location.href='/produk'">Produk</button>
+		</div><br>
 
 		<div>
 			<span id="notif">
 			</span>
 		</div>
+		<br>
+		<h5 style="text-align: center;">Transaksi Produk</h5>
 		<button type="button" class="btn btn-primary" data-toggle="modal" id="buttonAdd">Tambah</button>
 		<div>
 			<table class="table table-bordered" id="bioTable">
