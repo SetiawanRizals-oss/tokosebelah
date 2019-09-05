@@ -28,7 +28,7 @@
 		<div class="btn-group btn-group-toggle" data-toggle="buttons">
 			&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 
-			<button class="btn btn-primary btn-sm" onclick="window.location.href='/kota'">Kota</button>
+			<button class="btn btn-primary btn-sm" onclick="window.location.href='/index'">Kota</button>
 			&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 			<button class="btn btn-primary btn-sm" onclick="window.location.href='/jenis'">Jenis</button>
 			&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;

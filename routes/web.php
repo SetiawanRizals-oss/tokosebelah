@@ -29,6 +29,7 @@ Route::get('/', function () {
 });
 
 
+
 Route::get('/settings', function () {
 
     return view('Settings.setting_index');
@@ -36,7 +37,15 @@ Route::get('/settings', function () {
 
 
 
+Route::get('/index', function () {
+    return view('kota.index_kota');
+});
+
+Route::get('/index','KotaController@index');
+
+
 Route::get('/kota','KotaController@index');
+
 Route::post('/kota/add','KotaController@add');
 Route::get('/kota/edit/{id}','KotaController@edit');
 Route::post('/kota/update','KotaController@update');
