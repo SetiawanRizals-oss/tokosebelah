@@ -11,21 +11,20 @@
 |
 */
 
-Route::get('/jenis', function () {
-    return view('Jenis.index_jenis');
-});
 
+Route::get('/halamanutama', 'ProdukController@indexhu');
 Route::post('/produk/add', 'ProdukController@add');
 Route::get('/produk', 'ProdukController@index');
 Route::get('/produk/{id}/edit', 'ProdukController@edit'); //method
 Route::post('/produk/update', 'ProdukController@update'); //method
-/*Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/produk/detail/{id}', 'ProdukController@detail'); //method
+Route::get('/produk/aktif/{id}', 'ProdukController@aktif'); //method
+Route::get('/produk/destroy/{id}', 'ProdukController@destroy'); //method
 
 Route::get('/', function () {
-    return view('toko/toko_index');
-});*/
+    return view('halamanutama');
+});
+
 Route::get('/toko','TokoController@index');
 Route::post('toko/add','TokoController@add');
 Route::get('toko/detail/{id}','TokoController@detail');
