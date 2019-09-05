@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Toko</title>
+	<title>tokosebelahdotcom</title>
 	<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/datatables.min.css">
 	<style type="text/css">
@@ -14,19 +14,31 @@
 
 </head>
 <body>
+
 	<div class="container">
-	<h2>DATA TOKO</h2><hr>
-	<table>
-		<thead>
-			<tr>
-				<th><a href="/Kota"><button class="btn btn-success">Kota</button></a></th>
-				<th><a href="/Kota"><button class="btn btn-success">Jenis</button></a></th>
-				<th><a href="/Kota"><button class="btn btn-warning">Toko</button></a></th>
-				<th><a href="/Kota"><button class="btn btn-success">Produk</button></a></th>
-				
-			</tr>
-		</thead>
-	</table>
+	
+	<center><img src="tokosebelah.jpg" width="280px" height="80px">
+		<i><h4>Mulai Aja Dulu</h4></i></center>
+
+		<div style="text-align: right;">
+			<button class="btn btn-primary" onclick="window.location.href='/'">Home</button>
+			<button class="btn btn-primary">Setting</button>
+		</div>
+
+		<div class="btn-group btn-group-toggle" data-toggle="buttons">
+			&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+
+			<button class="btn btn-primary btn-sm" onclick="window.location.href='/kota'">Kota</button>
+			&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+			<button class="btn btn-primary btn-sm" onclick="window.location.href='/jenis'">Jenis</button>
+			&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+		    <button class="btn btn-warning btn-sm" onclick="window.location.href='/toko'">Toko</button>
+		    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+		    <button class="btn btn-primary btn-sm" onclick="window.location.href='/produk'">Produk</button>
+		</div>
+		<hr>
+		<br>
+		<h5 style="text-align: center;">Data Toko</h5>
 	
 	<button type="button" id="buttonAdd" class="btn btn-info">Tambah Data</button><br><br>
 
@@ -35,7 +47,7 @@
 	</span>
 <!--  class='table table-striped' -->
 		<table id='bioTable' class='table table-striped';>
-			<thead style=" background:seagreen ; color:white ;">
+			<thead style=" background:forestgreen ; color:black ;">
 				<tr>
 					<th>Kode Toko</th>
 					<th>Nama Toko</th>
@@ -51,7 +63,7 @@
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	  <div class="modal-dialog" role="document">
 	    <div class="modal-content">
-	      <form id="formPelajaran">
+	      <form id="formPelajaran" onsubmit="return validatePijat()">
 	      	@csrf
 		      <div class="modal-header">
 		        <h5 class="modal-title-add" id="exampleModalLabel"></h5>
@@ -66,26 +78,26 @@
 		        	<tr>
 		        		<td class="align-middle">Kode Toko</td>
 		        		<td>
-		        			<input class="form-control input-lg" type="text" name="kodeToko" id="kodeToko" placeholder="Kode Toko..." required>
+		        			<input class="form-control input-lg" type="text" name="kodeToko" id="kodeToko" placeholder="Kode Toko..." >
 		        		</td>
 		        	</tr>
 		        	<tr>
 		        		<td class="align-middle">Nama Toko</td>
 		        		<td>
-		        			<input class="form-control input-lg" type="text" name="namaToko" id="namaToko" placeholder="Nama Toko..." required>
+		        			<input class="form-control input-lg" type="text" name="namaToko" id="namaToko" placeholder="Nama Toko..." >
 		        		</td>
 		        	</tr>
 		        	<tr>
 		        		<td class="align-middle">Rating Toko</td>
 		        		<td>
-		        			<input class="form-control input-lg" type="text" name="ratingToko" id="ratingToko" placeholder="Rating Toko..." required>
+		        			<input class="form-control input-lg" type="text" name="ratingToko" id="ratingToko" placeholder="Rating Toko..." >
 		        		</td>
 		        	</tr>
 		        </table>
 		      </div>
 		      <div class="modal-footer">
-		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-		        <button type="submit" id="tombol_act" class="btn btn-primary"></button>
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+		        <button type="submit" id="tombol_act" class="btn btn-warning"></button>
 		      </div>
 		  </form>
 	    </div>
@@ -120,7 +132,7 @@
 		        </table>
 		      </div>
 		      <div class="modal-footer">
-		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
 		        <!-- <button type="submit" id="tombol_act" class="btn btn-primary"></button> -->
 		      </div>
 		  </form>
@@ -137,11 +149,11 @@
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
 				<div class="modal-body">
-					<h4 class="modal-title" style="text-align: center;"> Kamu kenapa? gpp, aku minta maaf, y ...</h4>					
+					<h4 class="modal-title" style="text-align: center;"> Hapus Data?</h4>					
 				</div>
 				<div class="modal-footer" style="margin: 0px; border-top: 0px; text-align: center;">
-					<button class="btn btn-secondary" id="delete_button">Hapus</button>
-					<button type="button" class="btn btn-info" data-dismiss="modal">Batal</button>
+					<button class="btn btn-danger" id="delete_button">Hapus</button>
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
 		        <!-- <button type="submit" id="tombol_act" class="btn btn-primary"></button> -->
 		      </div>
 		  </form>
@@ -159,18 +171,21 @@
 		        </button>
 		      </div>
 		      <div class="modal-body">
-		        <!-- <input type="text" name="action" id="action"><br><br> -->
-		        <h4 class="modal-title" style="text-align: center;">Aktifin data?</h4>
+		       
+		        <h4 class="modal-title" style="text-align: center;">Aktifkan?</h4>
 		      </div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-		        <button type="submit" id="tombol_aktif" class="btn btn-danger"></button>
+		        <button type="submit" id="tombol_aktif" class="btn alert-primary"></button>
 		      </div>
 	    </div>
 	  </div>
 	</div>
 
 </body>
+
+
+
 	<script type="text/javascript">
 		$('#bioTable').DataTable({
  			processing : true,
@@ -214,11 +229,13 @@
  				
  			]
  		});
+
+
 	$(document).ready(function(){
 		$("#buttonAdd").click(function(){
-			$('.modal-title-add').html('Tambah Data');
+			$('.modal-title-add').html('PopUp');
 			$('#action').val('tambah');
-			$('#tombol_act').text('Add');
+			$('#tombol_act').text('Tambah');
 			// $("#formPelajaran")[0].reset();
 			$('#myModal').modal('show');
 		});
@@ -256,16 +273,40 @@
 							if (data.error) {
 								html ='<div class="alert alert-danger alert-dismissible fade show" role="alert"><strong></strong>'+data.error+'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
 							}
+							 $("#bioTable").DataTable().ajax.reload();	
+
 							$("#notif").html(html);
 						}
 					});					
 				}
-			};
+				if (action == "edit") {
+			}
+		}
+	});
+
+			
+				
+		// edit
+		$(document).on('click','.edit',function(){
+			var id = $(this).attr('id');
+			// alert(id);
+			$.ajax({
+				url:"/toko/edit/"+id,
+				dataType: "json",
+				success:function(html){
+					$("#kodeToko").val(html.data[0].kodeToko);
+					$("#namaToko").val(html.data[0].namaToko);
+					$("#ratingToko").val(html.data[0].ratingToko);
+
+					$('#action').val('edit');
+					$('.modal-title-add').html('Ubah Data');
+					$('#tombol_act').text('Ubah');
+					$("#myModal").modal("show");
+				}
+			});
 		});
 
-			if (action == "edit") {
-				// alert("Ajax untuk tambah");
-				if (kodeToko.length > 6 || kodeToko.length < 6) {
+		if (kodeToko.length > 6 || kodeToko.length < 6) {
 					alert('Karakter harus 6 digit');
 				}else{
 					$("#formPelajaran").on("submit",function(event){
@@ -283,7 +324,7 @@
 							if (data.success) {
 								html ='<div class="alert alert-success alert-dismissible fade show" role="alert"><strong>Selamat! </strong>'+data.success+'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
 								$("#formPelajaran")[0].reset();
-								// $("#formPelajaran").DataTable().ajax.reload();
+								/*$("#bioTable").DataTable().ajax.reload();*/
 							}
 							if (data.error) {
 								html ='<div class="alert alert-danger alert-dismissible fade show" role="alert"><strong></strong>'+data.error+'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
@@ -294,28 +335,6 @@
 					});
 				});			
 			}
-		}
-		
-
-		// edit
-		$(document).on('click','.edit',function(){
-			var id = $(this).attr('id');
-			// alert(id);
-			$.ajax({
-				url:"/toko/edit/"+id,
-				dataType: "json",
-				success:function(html){
-					$("#kodeToko").val(html.data[0].kodeToko);
-					$("#namaToko").val(html.data[0].namaToko);
-					$("#ratingToko").val(html.data[0].ratingToko);
-
-					$('#action').val('edit');
-					$('.modal-title-add').html('Ubah Data');
-					$('#tombol_act').text('Update Data');
-					$("#myModal").modal("show");
-				}
-			});
-		});
 
 		// detail
 		$(document).on('click','.detail',function(){
@@ -329,8 +348,6 @@
 					$("#kode_toko_detail").text(html.data[0].kodeToko);
 					$("#nama_toko_detail").text(html.data[0].namaToko);
 					$("#rating_toko_detail").text(html.data[0].ratingToko);
-				
-
 					$("#myModalDetail").modal("show");
 				}
 			});
@@ -349,7 +366,7 @@
             $.ajax({
               url:"/toko/delete/"+id_delete,
               beforeSend:function(){
-                $("#delete_button").text('Deleting...');
+                $("#delete_button").text('Hapusin...');
               },
               success:function(){
                 setTimeout(function(){
@@ -386,6 +403,25 @@
 			});
 		});
 	});
+
+function validatePijat(){
+      var kodeToko = $("#kodeToko").val();
+      var namaToko = $("#namaToko").val();
+      var ratingToko = $("#ratingToko").val();
+
+      if (kodeToko =="") {
+        alert("Kode Toko tidak boleh kosong!");
+        return false;
+      }
+      if (namaToko =="") {
+        alert("Nama Toko tidak boleh kosong!");
+        return false;
+      }
+      if (ratingToko =="") {
+        alert("Kode Toko tidak boleh kosong!");
+        return false;
+      }
+    }
 
 </script>
 

@@ -16,19 +16,19 @@ class JenisController extends Controller
 			if($data->isDelete==0){
 				$button = '<button type="button"
 			    name="action" id="'.$data->kodeJenis.'"
-			    class="btn btn-outline-dark
+			    class="btn alert-danger
 			    btn-sm">Non Aktif</button>';
 			    $button .="&nbsp;&nbsp;&nbsp;" ;
 			    $button .= '<button type="button"
 			    name="action" id="'.$data->kodeJenis.'"
-			    class="darkness btn btn-success
+			    class="darkness btn alert-primary
 			    btn-sm">Aktifkan</button>';
 			    return $button;
 			}
 			else{
 				 $button = '<button type="button"
 			    name="action" id="'.$data->kodeJenis.'"
-			    class="btn btn-success
+			    class="btn alert-info
 			    btn-sm">Aktif</button>';
 			    return $button;
 			}
@@ -39,7 +39,7 @@ class JenisController extends Controller
             ->addColumn('detail',function($data){
 			$button = '<button type="button"
 			name="detail" id="'.$data->kodeJenis.'"
-			class="detail btn btn-secondary
+			class="detail btn btn-success
 			btn-sm">Lihat</button>';
 			return $button;
 			})
@@ -96,8 +96,8 @@ public function add(Request $request){ //post udah pasti  $request kalo ngelempa
           'isDelete'=>$isDelete
           
     );
-    $kodeJen = jenis::where('kodeJenis', '=' , $request->kodeJenis)->get(); //nyari data
-    $count=count($kodeJen);
+    $kodeYUI = jenis::where('kodeJenis', '=' , $request->kodeJenis)->get(); //nyari data
+    $count=count($kodeYUI);
 
     if($count==1){
       return response()->json(['error'=>' Data telah ada']);
@@ -145,7 +145,7 @@ public function update(Request $request)
     );
    
     $kodeJen = jenis::where('kodeJenis', '=' , $request->kodeJenis)->update($form_data); //nyari data
-        return response()->json(['success'=>' Nah dah ke update tuh']);
+        return response()->json(['success'=>' Data Berhasil Ditambah']);
  }
 
 
@@ -158,7 +158,7 @@ public function update(Request $request)
          );
    
     $kodeJen = jenis::where('kodeJenis',$kodeJenis)->update($form_data); //nyari data
-        return response()->json(['success'=>' Nah dah ke update tuh']);
+        return response()->json(['success'=>'Data Berhasil Di Non Aktifkan']);
  }
 
 

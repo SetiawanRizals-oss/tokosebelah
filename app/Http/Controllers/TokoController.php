@@ -12,18 +12,18 @@ class TokoController extends Controller
             return datatables()->of(toko::latest()->get())
             ->addColumn('status',function($data){
               if ($data->isDelete==0) {
-                $button = '<button type="button" name="status" id="'.$data->kodeToko.'" class="btn btn-outline-warning btn-sm">Non-Aktif</button>';
+                $button = '<button type="button" name="status" id="'.$data->kodeToko.'" class="btn alert-danger btn-sm">Non-Aktif</button>';
                 $button.="&nbsp;&nbsp;&nbsp;";
-                $button.='<button type="button" name="status" id="'.$data->kodeToko.'" class="aktif btn btn-warning btn-sm">Aktifkan</button>';
+                $button.='<button type="button" name="status" id="'.$data->kodeToko.'" class="aktif btn alert-primary btn-sm">Aktifkan</button>';
                 return $button;
               }
               else{
-                $button ='<button type="button" name="status" id="'.$data->kodeToko.'" class=" btn btn-warning btn-sm">Aktif</button>';
+                $button ='<button type="button" name="status" id="'.$data->kodeToko.'" class=" btn alert-info btn-sm">Aktif</button>';
                 return $button;
               }
             })
             ->addColumn('detail',function($data){
-                $button = '<button type="button" name="detail" id="'.$data->kodeToko.'" class="detail btn btn-secondary btn-sm">Lihat</button>';
+                $button = '<button type="button" name="detail" id="'.$data->kodeToko.'" class="detail btn btn-success btn-sm">Lihat</button>';
                 return $button;
             })
             ->addColumn('edit',function($data){
@@ -56,12 +56,11 @@ class TokoController extends Controller
         return response()->json(['error'=>'Data sudah terpakai']);
       }else{
         toko::create($form_data);
-        return response()->json(['success'=>'Data berhasil ditambah.']);
+        return response()->json(['success'=>'Data berhasil ditambah']);
       }
     }
 
-    public function update(Request $request)
-     {
+    public function update(Request $request){
        $isDelete = 1;
         $form_data = array(
         'kodeToko' => $request->kodeToko,
@@ -72,7 +71,7 @@ class TokoController extends Controller
 
         $kodeto = toko::where('kodeToko','=', $request->kodeToko)->update($form_data);
      
-        return response()->json(['success'=>'Data berhasil diupdate']);
+        return response()->json(['success'=>'Berhasil']);
       }
 
 
@@ -99,7 +98,7 @@ class TokoController extends Controller
 
         $kodeto = toko::where('kodeToko',$kodeToko)->update($form_data);
      
-        return response()->json(['success'=>'Data berhasil diupdate']);
+        return response()->json(['success'=>'Data berhasil dihapus']);
       }
 
       public function aktif($kodeToko) 

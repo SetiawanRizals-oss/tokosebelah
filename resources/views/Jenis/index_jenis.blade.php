@@ -10,6 +10,7 @@ table,th,td{
 	
 }
 
+
 	</style>
 	<script type="text/javascript" src="assets/js/jquery.min.js"></script>
 	<script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
@@ -18,29 +19,6 @@ table,th,td{
 
 <body>
 
-
-
-
-
-
-
-
-
-
-
-<h2 style="text-align: center;">Data Jenis</h2><hr>
-		<div style="text-align: right;">
-			<button class="btn btn-light active">Home</button>
-			<button class="btn btn-dark">Setting</button>
-		</div>
-
-		<div class="btn-group btn-group-toggle" data-toggle="buttons">
-		    <button class="btn btn-light btn-sm" onclick="window.location.href='/toko'">Toko</button>
-		    <button class="btn btn-success btn-sm active" onclick="window.location.href='/jenis'">Jenis
-		    </button>
-		    <button class="btn btn-light btn-sm" onclick="window.location.href='/kota'">Kota</button>
-		    <button class="btn btn-light btn-sm" onclick="window.location.href='/produk'">Produk</button>
-		</div><hr><br>
 
 
 
@@ -59,16 +37,42 @@ table,th,td{
 
 </table> -->
 <div class="container">
+	  <center> <img src ="uit.jpg" height="80" width="280">
+	  	<i><h4>Mulai Aja dulu</h4></i>
+	  </center>
+		<div style="text-align: right;">
+            <button class="btn btn-primary" onclick="window.location.href='/'">Home</button>
+			<button class="btn btn-primary" onclick="window.location.href='/settings'">Setting</button>
+
+		</div>
+<hr>
+		<div class="btn-group btn-group-toggle" data-toggle="buttons">
+            &emsp; &emsp;&emsp; &emsp; &emsp; &emsp;
+		    <button type ="button"class="btn btn-primary btn-sm ;" onclick="window.location.href='/kota'" >Kota
+		    </button>
+		    &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; 
+
+		    <button class="btn btn-warning btn-sm active" onclick="window.location.href='/jenis'">Jenis
+		    </button>
+		     &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; 
+		   
+		    <button class="btn btn-primary btn-sm" onclick="window.location.href='/toko'">Toko</button>
+		     &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; 
+		    <button class="btn btn-primary btn-sm" onclick="window.location.href='/produk'">Produk</button>
+		</div><br>
+
+	<h5 style="text-align: center;">Data Jenis</h5>
 <span id="notif">
 
 </span>
 
-
 <button type="button" class="btn btn-primary" data-toggle="modal" id="modalAdd">
 		Tambah
 	</button>
+	<br>
+
 <table class="table table-striped" id="bioTable" > 
-	<thead style="text-align: center; color:yellow; background:grey;">
+	<thead style="text-align: center; color:black; background:forestgreen;">
           <tr>
           <th>Kode Jenis </th>
           <th>Nama Jenis</th>
@@ -85,7 +89,7 @@ table,th,td{
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="formdataLabel" aria-hidden="true">
 		  <div class="modal-dialog" role="document">
 		    <div class="modal-content">
-          <form id="formJenis" ><!-- onsubmit="return validasi()"> -->
+          <form id="formJenis" onsubmit="return validasi()" >
         @csrf
 			      <div class="modal-header">
 			        <h5 class="modal-titleAdd" id="yuuki">Input Biodata</h5>
@@ -101,27 +105,27 @@ table,th,td{
 			<tr>
 	    		<td>Kode Jenis</td>
 	    		<td>:</td>
-	    		<td><input type="text" id="kodeJenis" name="kodeJenis" placeholder="kode Jenis" required></td>
+	    		<td><input type="text" id="kodeJenis" name="kodeJenis" placeholder="kode Jenis"></td>
 	    	</tr>
 
 	       <tr>
 	       	<td>Nama Jenis</td>
 	     	<td>:</td>
-	     	<td><input type="text" name="namaJenis" id="namaJenis" placeholder="">
+	     	<td><input type="text" name="namaJenis" id="namaJenis" placeholder="nama Jenis">
 	     	</td>
 	       </tr>
 
 				<tr>
 	       	<td>Promo Jenis</td>
 	     	<td>:</td>
-	     	<td><input type="text" id="promoJenis" name="promoJenis" placeholder="Promo Jenis" required></td>
+	     	<td><input type="text" id="promoJenis" name="promoJenis" placeholder="Promo Jenis"></td>
 	       </tr>
 				
 	      </table>
 			      	</div>
 			      	<div class="modal-footer">
 			        	<button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-			        	<button type="submit" id="tombol_action" class="btn btn-primary">Tambah Data</button>
+			        	<button type="submit" id="tombol_action" class="btn btn-warning">Tambah Data</button>
 			      	</div>
 			  </form>
 		    </div>
@@ -244,6 +248,9 @@ table,th,td{
 </body>
 <script type="text/javascript">
 
+
+
+
 $('#bioTable').DataTable({
  			processing : true,
  			serverside : true,
@@ -292,7 +299,6 @@ $('#bioTable').DataTable({
 
 
 
-
 $(document).ready(function(){
 $("#modalAdd").click(function(){
 $(".modal-titleAdd").text('POP UP');
@@ -300,30 +306,21 @@ $("#tombol_action").text('Tambah Data');
 $("#action").val('tambah');
 $("#myModal").modal('show');
   });
-});
-
-
-
 
 $("#formJenis").on('submit',function(e){
 	e.preventDefault();
 var action = $("#action").val();
 var kodeJenis =$("#kodeJenis").val();
 
-//alert(kode_pelajaran);
-
-
-
-
-
-//alert(action);
-
 if (action=='tambah'){
-  if (kodeJenis.length > 5 || kodeJenis.length < 5){
-  	alert('Karakter harus 5 digit');
-  }
+ 
+	  if (kodeJenis.length > 5 || kodeJenis.length < 5)
+	  {
+	  	alert('Karakter harus 5 digit');
+	  }
 
-  else{
+		  else
+		  {
 $.ajax({
 					url:"/jenis/add",
 					method:"POST",
@@ -335,17 +332,7 @@ $.ajax({
 					success:function(data){
 						var html ='';
 						$("#myModal").modal('hide');
-						
-						/*if (data.errors) {
-							html = '<div class="alert alert-danger">';
-							for(var count =0; count < data.errors.length; count++){
-								html+='<p>'+data.errors[count]+'<p>';
-							}
-
-							html+='</div>';
-						}*/
-						
-
+					
 						if (data.success) {
 							html ='<div class="alert alert-success alert-dismissible fade show" role="alert"><strong>WOI DATA nya Berhasil ditambah</strong>'+data.success+'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
 
@@ -370,32 +357,24 @@ $.ajax({
 				}); //penutup ajax
 			
   }
+
+
+
+
 /*alert("ajax untuk tambah")*/
 } // penutup if tambah
 
 
 //
 
-if (action=='edit'){
-	/*alert("ajax untuk edit")
-	*/
 
-
-}
 
 
 
 
 });
 
-$(document).ready(function(){
-
- $("#modalEdit").click(function(){
-$(".modal-title").text('Edit Data');
-$("#tombol_action").text('Edit data');
-$("#action").val('edit');
-$("#myModal").modal('show');
-  });
+});
 
 
 $(document).on('click','.detail',function(){
@@ -416,7 +395,11 @@ $(document).on('click','.detail',function(){
 		});
 
 
-});
+
+
+
+
+
 
 $(document).on('click','.edit',function(){
 			var id = $(this).attr('id');
@@ -430,7 +413,7 @@ $(document).on('click','.edit',function(){
 					$("#promoJenis").val(html.data[0].promoJenis);
 					$("#yuuki").text("Edit Data");
 					$("#action").val("Edit");
-					$("#kode_pelajaran").prop('readonly',true); //untuk nambahin readonly
+					$("#kodeJenis").attr('readonly',true); //untuk nambahin readonly
 					$("#tombol_action").text('Update Data');
 					$("#myModal").modal("show");
 				}
@@ -442,7 +425,6 @@ $(document).on('click','.edit',function(){
 // update
 		$("#formJenis").on("submit", function(event){
 			event.preventDefault();
-			// if($("$action").val() == "add") {
 				$.ajax({
 					url:"/jenis/update",
 					method:"POST",
@@ -454,16 +436,7 @@ $(document).on('click','.edit',function(){
 					success:function(data){
 						var html ='';
 						$("#myModal").modal('hide');
-						
-						/*if (data.errors) {
-							html = '<div class="alert alert-danger">';
-							for(var count =0; count < data.errors.length; count++){
-								html+='<p>'+data.errors[count]+'<p>';
-							}
-
-							html+='</div>';
-						}*/
-						
+					
 
 						if (data.success) {
 							html ='<div class="alert alert-success alert-dismissible fade show" role="alert"><strong>Telah Di Update</strong>'+data.success+'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
@@ -472,6 +445,7 @@ $(document).on('click','.edit',function(){
 							 $("#formJenis")[0].reset();
 							
 						}
+
 						$("#bioTable").DataTable().ajax.reload();
 
                         if (data.error) {
@@ -491,6 +465,20 @@ $(document).on('click','.edit',function(){
 		});
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 var id_delete;
 		$(document).on('click','.delete',function(){
 
@@ -504,7 +492,7 @@ var id_delete;
 			$.ajax({
 				url:"/jenis/destroy/"+lets,
 				beforeSend:function(){
-					$("#delete_button").text('Lagi di delete Boosss');
+					$("#delete_button").text('sedang di hapus');
 				},
 				success:function(){
 					setTimeout(function(){
@@ -546,6 +534,32 @@ var is_darkness;
 
 
 
+function validasi() {
+		var kodeJenis = $("#kodeJenis").val();
+		var namaJenis = $("#namaJenis").val();
+		var promoJenis = $("#promoJenis").val();
+				
+
+
+		if (kodeJenis=="") {
+			alert("Kode jenis tidak boleh kosong");
+			return false;
+		}
+          
+        if (namaJenis=="") {
+			alert("nama jenis tidak boleh kosong");
+			return false;
+		}
+
+        if (promoJenis=="") {
+			alert("promo jenis tidak boleh kosong");
+			return false;
+		}
+
+}
+
+
+		
 
 
 </script>

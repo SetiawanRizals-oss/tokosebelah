@@ -19,7 +19,7 @@
 	<div class="container">
 		<div>
 			<table class="table table-bordered" id="bioTable">
-				<thead style="background-color: powderblue">
+				<thead style="background-color: forestgreen; color: white">
 					<tr>
 						<th>Nama Produk</th>
 						<th>Harga Produk</th>
@@ -50,16 +50,16 @@
 				name: 'hargaProduk'
 			},
 			{
-				data: 'kodeToko',
-				name: 'kodeToko'
+				data: 'namaToko',
+				name: 'namaToko'
 			},
 			{
-				data: 'kodeJenis',
-				name: 'kodeJenis'
+				data: 'namaJenis',
+				name: 'namaJenis'
 			},
 			{
-				data: 'kodeKota',
-				name: 'kodeKota'
+				data: 'namaKota',
+				name: 'namaKota'
 			}
 			]
 		});
