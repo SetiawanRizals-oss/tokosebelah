@@ -12,5 +12,12 @@
 */
 
 Route::get('/', function () {
-    return view('Jenis.index_jenis');
+    return view('kota.index_kota');
 });
+Route::get('/index','KotaController@index');
+Route::post('/kota/add','KotaController@add');
+Route::get('/kota/edit/{id}','KotaController@edit');
+Route::post('/kota/update','KotaController@update');
+Route::get('/kota/detail/{id}','KotaController@detail');
+Route::get('/kota/delete/{id}','KotaController@delete');
+Route::get('/kota/aktif/{id_aktif}','kotaController@aktif');
