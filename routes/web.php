@@ -26,6 +26,10 @@ Route::get('/produk/destroy/{id}', 'ProdukController@destroy'); //method
 Route::get('/', function () {
     return view('halamanutama');
 });
+Route::get('/index', function () {
+    return view('kota.index_kota');
+});
+
 Route::get('/index','KotaController@index');
 Route::post('/kota/add','KotaController@add');
 Route::get('/kota/edit/{id}','KotaController@edit');
