@@ -10,7 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('/jenis',function(){
+	return view("Jenis.index_jenis");
+});
 
 Route::get('/halamanutama', 'ProdukController@indexhu');
 Route::post('/produk/add', 'ProdukController@add');
