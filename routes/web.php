@@ -2,7 +2,7 @@
 
 /*
 |--------------------------------------------------------------------------
-| Web Routes
+| Web Route
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
@@ -23,18 +23,15 @@ Route::get('/produk/destroy/{id}', 'ProdukController@destroy'); //method
 
 Route::get('/', function () {
 
-    return view('kota.index_kota');
+    return view('halamanutama');
 });
-Route::get('/index','KotaController@index');
+Route::get('/kota','KotaController@index');
 Route::post('/kota/add','KotaController@add');
 Route::get('/kota/edit/{id}','KotaController@edit');
 Route::post('/kota/update','KotaController@update');
 Route::get('/kota/detail/{id}','KotaController@detail');
 Route::get('/kota/delete/{id}','KotaController@delete');
-Route::get('/kota/aktif/{id_aktif}','kotaController@aktif');
-
-    return view('halamanutama');
-});
+Route::get('/kota/aktif/{id_aktif}','KotaController@aktif');
 
 Route::get('/toko','TokoController@index');
 Route::post('toko/add','TokoController@add');

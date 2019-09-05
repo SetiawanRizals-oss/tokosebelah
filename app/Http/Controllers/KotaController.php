@@ -13,27 +13,27 @@ class KotaController extends Controller
 
            ->addColumn('action',function($data){
 				if ($data->isDelete==0){
-				$button= '<button type="button" name="satatus" id="'.$data->kodeKota.'" class="btn btn-outline-dark btn-sm">Non Aktifkan</button>';
+				$button= '<button type="button" name="satatus" id="'.$data->kodeKota.'" class="btn alert-success btn-sm">Non Aktifkan</button>';
 				$button .="&nbsp;&nbsp;";
-				$button	.= '<button type="button" name="satatus" id="'.$data->kodeKota.'" class="status btn btn-outline-warning btn-sm">Aktifkan</button>';
+				$button	.= '<button type="button" name="satatus" id="'.$data->kodeKota.'" class="status btn btn-primary btn-sm">Aktifkan</button>';
 				return $button;
 
 				}else{
-				$button= '<button type="button" name="satatus" id="'.$data->kodeKota.'" class="btn btn-outline-success btn-sm" colspan="2">Aktif</button>';
+				$button= '<button type="button" name="satatus" id="'.$data->kodeKota.'" class="btn  alert-danger btn-sm" colspan="2">Aktif</button>';
 					return $button;
 				}
 			})
 
             ->addColumn('edit',function($data){
-                $button = '<button type="button" name="edit" id="'.$data->kodeKota.'" class="edit btn btn-primary btn-sm">Edit</button>';
+                $button = '<button type="button" name="edit" id="'.$data->kodeKota.'" class="edit btn btn-primary btn-sm">Ubah</button>';
                 return $button;
             })
             ->addColumn('delete',function($data){
-                $button = '<button type="button" name="delete" id="'.$data->kodeKota.'" class="delete btn btn-danger btn-sm">Delete</button>';
+                $button = '<button type="button" name="delete" id="'.$data->kodeKota.'" class="delete btn btn-danger btn-sm">Hapus</button>';
                 return $button;
             })
             ->addColumn('detail',function($data){
-                $button = '<button type="button" name="detail" id="'.$data->kodeKota.'" class="detail btn btn-success btn-sm">Detail</button>';
+                $button = '<button type="button" name="detail" id="'.$data->kodeKota.'" class="detail btn btn-success btn-sm">Lihat</button>';
                 return $button;
             })
             ->rawColumns(array("action","edit","delete","detail"))
@@ -52,7 +52,7 @@ class KotaController extends Controller
     		'isDelete'	=> $isDelete
     	);
 
-    	$kodekota = Kota::latest('kodeKota','=', $request->kodeKota)->get();
+    	$kodekota = Kota::where('kodeKota','=', $request->kodeKota)->get();
     	$count = count($kodekota);
 
     	if ($count == 1) {
@@ -70,7 +70,7 @@ class KotaController extends Controller
 	}
 	public function update(Request $request)
      {
-       $isDelete = 1;
+       	$isDelete = 1;
         $form_data 	= array(
         'kodeKota' 	=> $request->kodeKota,
         'namaKota' 	=> $request->namaKota,
@@ -93,7 +93,7 @@ class KotaController extends Controller
         'isDelete'=>0
       );
         $kodeto = Kota::where('kodeKota',$kodeKota)->update($form_data);
-        return response()->json(['success'=>'Data berhasil diupdate']);
+        return response()->json(['success'=>'Data berhasil didelete']);
      }
     public function aktif($kodeKota) 
       {

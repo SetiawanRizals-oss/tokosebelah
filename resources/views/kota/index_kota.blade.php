@@ -9,17 +9,37 @@
 	<script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="assets/js/datatables.min.js"></script>
 </head>
+
 <body>
 	<div class="container">
-		<h1 style="text-align: center;">Data Kota</h1>
+		<center><img src="Capture.jpg" width="280px" height="80px">
+		<i><h4>Mulai Aja Dulu</h4></i></center>
+		<div style="text-align: right;">
+			<button class="btn btn-secondary">Halaman Utama</button>
+			<button class="btn btn-primary">Pengaturan</button>
+		</div>
+
+		<div class="btn-group btn-group-toggle" data-toggle="buttons">
+			&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+			<button class="btn btn-warning btn-sm" onclick="window.location.href='/kota'">Kota</button>
+			&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+			<button class="btn btn-primary btn-sm active" onclick="window.location.href='/jenis'">Jenis
+		    </button>
+		    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+		    <button class="btn btn-primary btn-sm" onclick="window.location.href='/toko'">Toko</button>
+		    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+		    <button class="btn btn-primary btn-sm" onclick="window.location.href='/produk'">Produk</button>
+		</div><hr><br>
+
 		<div>
+			<h1 style="text-align: center;">Data Kota</h1>
 			<button type="button" class="btn btn-primary" id="buttonAdd">Tambah</button>
 			<br><br>
 			<span id="notif"></span>
 		</div>
 		<br>
 		<table id="myTable" class="table table-hiver" >
-			<thead style="text-align: center;">
+			<thead style="text-align: center; background-color: forestgreen;">
 				<tr>
 					<th>kodeKota</th>
 					<th>namaKota</th>
@@ -35,7 +55,7 @@
 <div id="myModal" class="modal" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-    	<form id="formKota">
+    	<form id="formKota" onsubmit="return validation()">
     		@csrf
 		      <div class="modal-header">
 		        <h5 class="modal-title-add" id="exampleModalLabel"></h5>
@@ -48,21 +68,21 @@
 		       <table class="table">
 		       	<tr>
 		       		<td>kodeKota</td>
-		       		<td><input type="text" name="kodeKota" id="kodeKota" placeholder="Kode Kota" required=""></td>
+		       		<td><input type="text" name="kodeKota" id="kodeKota" placeholder="Kode Kota" ></td>
 		       	</tr>
 		       	<tr>
 		       		<td>namaKota</td>
-		       		<td><input type="text" name="namaKota" id="namaKota" placeholder="Nama Kota" required=""></td>
+		       		<td><input type="text" name="namaKota" id="namaKota" placeholder="Nama Kota" ></td>
 		       	</tr>
 		       	<tr>
 		       		<td>luasKota</td>
-		       		<td><input type="text" name="luasKota" id="luasKota" placeholder="luas Kota" required=""></td>
+		       		<td><input type="text" name="luasKota" id="luasKota" placeholder="luas Kota" ></td>
 		       	</tr>
 		       </table>
 		         </div>
 			 	  <div class="modal-footer">
 		       <!--  <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button> -->
-		        <button type="submit" class="btn btn-primary" id="tombol_action">OKE</button>
+		        <button type="submit" class="btn btn-warning" id="tombol_action">OKE</button>
 		      </div>
 	    </form>
 	 </div>
@@ -152,7 +172,7 @@
 				processing : true,
 				serverside:true,
 				ajax:{
-					url: '/index',
+					url: '/kota',
 				},
 				columns:[
 					{
@@ -183,14 +203,12 @@
 						name:'delete',
 						orderable:false
 					}
-					
-					
 				]
 		});
 
 	$(document).ready(function() {
 		$("#buttonAdd").click(function(){
-			$(".modal-title").text('Tambah Data');//.buat class
+			$(".modal-title-add").text('Tambah Data');//.buat class
 			$("#tombol_action").text('OK');//#buat id
 			$("#action").val('Tambah');
 			$("#myModal").modal('show');		
@@ -364,5 +382,20 @@
 			});
 		});
 	});
+function validation(){
+	var kodeKota=$('#kodeKota').val();
+	var namaKota=$('#namaKota').val();
+	// var luasKota=$('#luasKota').val();
+
+	if (kodeKota=='') {
+		alert('kode kota gaboleh kosong !!')
+	}
+	if (namaKota=='') {
+		alert('nama kota gaboleh kosong !!')
+	}
+	// if (luasKota=='') {
+	// 	alert('luas kota gaboleh kosong !!')
+	// }
+}
 </script>
 </html>
