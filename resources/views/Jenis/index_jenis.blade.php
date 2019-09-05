@@ -17,7 +17,34 @@ table,th,td{
 	</head>
 
 <body>
-<div class="container">
+
+
+
+
+
+
+
+
+
+
+
+<h2 style="text-align: center;">Data Jenis</h2><hr>
+		<div style="text-align: right;">
+			<button class="btn btn-light active">Home</button>
+			<button class="btn btn-dark">Setting</button>
+		</div>
+
+		<div class="btn-group btn-group-toggle" data-toggle="buttons">
+		    <button class="btn btn-light btn-sm" onclick="window.location.href='/toko'">Toko</button>
+		    <button class="btn btn-success btn-sm active" onclick="window.location.href='/jenis'">Jenis
+		    </button>
+		    <button class="btn btn-light btn-sm" onclick="window.location.href='/kota'">Kota</button>
+		    <button class="btn btn-light btn-sm" onclick="window.location.href='/produk'">Produk</button>
+		</div><hr><br>
+
+
+
+<!-- 
 	<h1><p style="text-align: center; font-style: times new roman;">Data Jenis</p></h1>
 <table>
 	<thead>
@@ -30,7 +57,7 @@ table,th,td{
 		  </tr>
 	</thead>
 
-</table>
+</table> -->
 <div class="container">
 <span id="notif">
 
@@ -45,7 +72,6 @@ table,th,td{
           <tr>
           <th>Kode Jenis </th>
           <th>Nama Jenis</th>
-          <th>Promo Jenis</th>
           <th>Status</th>
           <th>Lihat</th>
           <th>Ubah</th>
@@ -167,7 +193,7 @@ table,th,td{
 				</div>
 			</div>
 		</div>
-	</div>
+	
 
 
 <!-- modal popup delete -->
@@ -222,7 +248,7 @@ $('#bioTable').DataTable({
  			processing : true,
  			serverside : true,
  			ajax:{
- 				url: "/jenis",
+ 				url: "/jenis_looks",
  			},
  			columns:[
  			     {
@@ -232,11 +258,6 @@ $('#bioTable').DataTable({
  				{
  					data : 'namaJenis',
  					name : 'namaJenis'
- 				},
- 				{
- 					data : 'promoJenis',
- 					name : 'promoJenis'
- 					
  				},
  				{
  					data : 'action',
