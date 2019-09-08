@@ -49,7 +49,7 @@
 		<h5 style="text-align: center;">Transaksi Produk</h5>
 		<button type="button" class="btn btn-primary" data-toggle="modal" id="buttonAdd">Tambah</button>
 		<div>
-			<table class="table table-bordered" id="bioTable">
+			<table class="table table-bordered" id="bioTable" style="width: 100%;">
 				<thead style="background-color: forestgreen; color: white">
 					<tr>
 						<th rowspan="2">Kode Produk</th>
@@ -106,7 +106,7 @@
 										<select id="kota" name="kota">
 											<option value="">Pilih Kota</option>
 											@foreach($kotaz as $kota)
-											<option value="{{ $kota->kodeKota }}">{{ $kota->kodeKota }}</option>
+											<option value="{{ $kota->kodeKota }}">{{ $kota->namaKota }}</option>
 											@endforeach
 										</select>
 									</td>
@@ -117,7 +117,7 @@
 										<select id="jenis" name="jenis">
 											<option value="">Pilih Jenis</option>
 											@foreach($jenisz as $jenis)
-											<option value="{{ $jenis->kodeJenis }}">{{ $jenis->kodeJenis }}</option>
+											<option value="{{ $jenis->kodeJenis }}">{{ $jenis->namaJenis }}</option>
 											@endforeach
 										</select>
 									</td>
@@ -128,7 +128,7 @@
 										<select id="toko" name="toko">
 											<option value="">Pilih Toko</option>
 											@foreach($tokoz as $toko)
-											<option value="{{ $toko->kodeToko }}">{{ $toko->kodeToko }}</option>
+											<option value="{{ $toko->kodeToko }}">{{ $toko->namaToko }}</option>
 											@endforeach
 										</select>
 									</td>
@@ -443,6 +443,11 @@
 				}
 			});
 		});
+
+		$('#myModal').on('hidden.bs.modal', function(e){
+			$("#formProduk")[0].reset() // menggunakan id form
+		});
+
 	});
 
 	function validate(){
