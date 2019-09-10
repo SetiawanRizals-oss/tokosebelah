@@ -461,32 +461,5 @@
 		});
 	});
 
-	// function validate(){
-	// 	var namaProduk= $("#namaProduk").val();
-	// 	var hargaProduk= $("#hargaProduk").val();
-	// 	var kodeKota= $("#kodeKota").val();
-	// 	var kodeJenis= $("#kodeJenis").val();
-	// 	var kodeToko= $("#kodeToko").val();
-	// 	if (namaProduk=="") {
-	// 		alert("Nama produk tidak boleh kosong")
-	// 		return false;
-	// 	}
-	// 	if (hargaProduk=="") {
-	// 		alert("Harga produk tidak boleh kosong")
-	// 		return false;
-	// 	}
-	// 	if (kodeKota=="") {
-	// 		alert("Kode kota tidak boleh kosong")
-	// 		return false;
-	// 	}
-	// 	if (kodeJenis=="") {
-	// 		alert("Kode jenis tidak boleh kosong")
-	// 		return false;
-	// 	}
-	// 	if (kodeToko=="") {
-	// 		alert("Kode toko tidak boleh kosong")
-	// 		return false;
-	// 	}
-	// }
 </script>
 </html>
