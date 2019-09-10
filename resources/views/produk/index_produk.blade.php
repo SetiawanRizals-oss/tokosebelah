@@ -72,7 +72,7 @@
 		<div class="modal" tabindex="-1" role="dialog" id="myModal">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
-					<form id="formProduk" onsubmit="return validate()">
+					<form id="formProduk">
 						@csrf
 						<div class="modal-header">
 							<h5 class="modal-title">Modal Title</h5>
