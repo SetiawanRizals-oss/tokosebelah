@@ -43,9 +43,9 @@ class ProdukController extends Controller
             ->rawColumns(array("detail","edit","delete","aksi"))
             ->make(true);
     	}
-        $jenisz = jenis::select('kodeJenis')->get(); //seperti select hobi from
-        $kotaz = Kota::select('kodeKota')->get(); //seperti select hobi from
-        $tokoz = toko::select('kodeToko')->get(); //seperti select hobi from
+        $jenisz = jenis::select('kodeJenis','namaJenis')->get(); //seperti select hobi from
+        $kotaz = Kota::select('kodeKota','namaKota')->get(); //seperti select hobi from
+        $tokoz = toko::select('kodeToko','namaToko')->get(); //seperti select hobi from
         return view::make('produk.index_produk')->with('jenisz',$jenisz)->with('kotaz',$kotaz)->with('tokoz',$tokoz);
         // return view('produk.index_produk',['jenisz'=>$jenisz],['kotaz'=>$kotaz],['tokoz'=>$tokoz]);
     }

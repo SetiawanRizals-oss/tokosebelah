@@ -39,17 +39,19 @@
 		    <button class="btn btn-primary btn-sm" onclick="window.location.href='/toko'">Toko</button>
 		     &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; 
 		    <button class="btn btn-warning btn-sm active" onclick="window.location.href='/produk'">Produk</button>
-		</div><br>
-
-		<div>
-			<span id="notif">
-			</span>
 		</div>
 		<br>
+		<br>
 		<h5 style="text-align: center;">Transaksi Produk</h5>
-		<button type="button" class="btn btn-primary" data-toggle="modal" id="buttonAdd">Tambah</button>
 		<div>
-			<table class="table table-bordered" id="bioTable">
+			<span id="notif"></span>
+		</div>
+		<div class="container">
+			<button type="button" class="btn btn-primary" data-toggle="modal" id="buttonAdd">Tambah</button>
+		</div>
+		<br>
+		<div>
+			<table class="table table-bordered" id="bioTable" style="width: 100%">
 				<thead style="background-color: forestgreen; color: white">
 					<tr>
 						<th rowspan="2">Kode Produk</th>
@@ -67,7 +69,7 @@
 				</tbody>
 			</table>
 		</div>
-	<div class="modal" tabindex="-1" role="dialog" id="myModal">
+		<div class="modal" tabindex="-1" role="dialog" id="myModal">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<form id="formProduk" onsubmit="return validate()">
@@ -106,7 +108,7 @@
 										<select id="kota" name="kota">
 											<option value="">Pilih Kota</option>
 											@foreach($kotaz as $kota)
-											<option value="{{ $kota->kodeKota }}">{{ $kota->kodeKota }}</option>
+											<option value="{{ $kota->kodeKota }}">{{ $kota->namaKota }}</option>
 											@endforeach
 										</select>
 									</td>
@@ -117,7 +119,7 @@
 										<select id="jenis" name="jenis">
 											<option value="">Pilih Jenis</option>
 											@foreach($jenisz as $jenis)
-											<option value="{{ $jenis->kodeJenis }}">{{ $jenis->kodeJenis }}</option>
+											<option value="{{ $jenis->kodeJenis }}">{{ $jenis->namaJenis }}</option>
 											@endforeach
 										</select>
 									</td>
@@ -128,7 +130,7 @@
 										<select id="toko" name="toko">
 											<option value="">Pilih Toko</option>
 											@foreach($tokoz as $toko)
-											<option value="{{ $toko->kodeToko }}">{{ $toko->kodeToko }}</option>
+											<option value="{{ $toko->kodeToko }}">{{ $toko->namaToko }}</option>
 											@endforeach
 										</select>
 									</td>
@@ -285,11 +287,25 @@
 			event.preventDefault();
 			var action = $("#action").val(); //get value dari value dengan id action
 			var kodeProduk = $("#kodeProduk").val(); //get value dari value dengan id action
-			// alert(action);
+			var namaProduk = $("#namaProduk").val(); //get value dari value dengan id action
+			var hargaProduk = $("#hargaProduk").val(); //get value dari value dengan id action
+			var kodeKota = $("#kota").val(); //get value dari value dengan id action
+			var kodeJenis = $("#jenis").val(); //get value dari value dengan id action
+			var kodeToko = $("#toko").val(); //get value dari value dengan id action
 			if (action == "Tambah Data") {
-				if (kodeProduk.length > 5 || kodeProduk.length < 5) {
-					alert('Kode produk harus 5 digit');
-				} else {
+					if (kodeProduk.length > 5 || kodeProduk.length < 5) {
+						alert('Kode produk harus 5 digit');
+					} else if (namaProduk == "") {
+						alert('Nama produk harus diisi');
+					} else if (hargaProduk == "") {
+						alert('Harga produk harus diisi');
+					} else if (kodeKota == "") {
+						alert('Kode kota harus diisi');
+					} else if (kodeJenis == "") {
+						alert('Kode jenis harus diisi');
+					} else if (kodeToko == "") {
+						alert('Kode toko harus diisi');
+					} else {
 					$.ajax({
 						url:"/produk/add",
 						method: "POST",
@@ -445,37 +461,32 @@
 		});
 	});
 
-	function validate(){
-		var kodeProduk= $("#kodeProduk").val();
-		var namaProduk= $("#namaProduk").val();
-		var hargaProduk= $("#hargaProduk").val();
-		var kodeKota= $("#kodeKota").val();
-		var kodeJenis= $("#kodeJenis").val();
-		var kodeToko= $("#kodeToko").val();
-		if (kodeProduk=="") {
-			alert("Kode produk tidak boleh kosong")
-			return false;
-		}
-		if (namaProduk=="") {
-			alert("Nama produk tidak boleh kosong")
-			return false;
-		}
-		if (hargaProduk=="") {
-			alert("Harga produk tidak boleh kosong")
-			return false;
-		}
-		if (kodeKota=="") {
-			alert("Kode kota tidak boleh kosong")
-			return false;
-		}
-		if (kodeJenis=="") {
-			alert("Kode jenis tidak boleh kosong")
-			return false;
-		}
-		if (kodeToko=="") {
-			alert("Kode toko tidak boleh kosong")
-			return false;
-		}
-	}
+	// function validate(){
+	// 	var namaProduk= $("#namaProduk").val();
+	// 	var hargaProduk= $("#hargaProduk").val();
+	// 	var kodeKota= $("#kodeKota").val();
+	// 	var kodeJenis= $("#kodeJenis").val();
+	// 	var kodeToko= $("#kodeToko").val();
+	// 	if (namaProduk=="") {
+	// 		alert("Nama produk tidak boleh kosong")
+	// 		return false;
+	// 	}
+	// 	if (hargaProduk=="") {
+	// 		alert("Harga produk tidak boleh kosong")
+	// 		return false;
+	// 	}
+	// 	if (kodeKota=="") {
+	// 		alert("Kode kota tidak boleh kosong")
+	// 		return false;
+	// 	}
+	// 	if (kodeJenis=="") {
+	// 		alert("Kode jenis tidak boleh kosong")
+	// 		return false;
+	// 	}
+	// 	if (kodeToko=="") {
+	// 		alert("Kode toko tidak boleh kosong")
+	// 		return false;
+	// 	}
+	// }
 </script>
 </html>
