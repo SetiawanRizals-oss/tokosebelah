@@ -153,8 +153,10 @@ public function update(Request $request)
       {
        
          $isDelete = 1;	
+         $tanggalHapus= date_default_timezone_set("Asia/Jakarta");
          $form_data =array(
-          'isDelete'=>0
+          'isDelete'=>0,
+          'tanggalHapus'=>date('Y-m-d H:i:s')
          );
    
     $kodeJen = jenis::where('kodeJenis',$kodeJenis)->update($form_data); //nyari data
@@ -166,8 +168,10 @@ public function dark($kodeJenis)
       {
        
          $isDelete = 0;	
+         $tanggalHapus=date_default_timezone_set("Asia/Jakarta");
          $form_data =array(
-          'isDelete'=>1
+          'isDelete'=>1,
+          'tanggalHapus'=>Null
          );
    
     $kodeJen = jenis::where('kodeJenis',$kodeJenis)->update($form_data); //nyari data

@@ -72,7 +72,7 @@
 		        </button>
 		      </div>
 		      <div class="modal-body">
-		        <input type="text" name="action" id="action"><br><br>
+		        <input type="hidden" name="action" id="action"><br><br>
 
 		        <table class="table">
 		        	<tr>
@@ -233,10 +233,10 @@
 
 	$(document).ready(function(){
 		$("#buttonAdd").click(function(){
-			$('.modal-title-add').html('PopUp');
+			$('.modal-title-add').html('Tambah Data');
 			$('#action').val('tambah');
 			$('#tombol_act').text('Tambah');
-			// $("#formPelajaran")[0].reset();
+			$("#formPelajaran")[0].reset();
 			$('#myModal').modal('show');
 		});
 
@@ -279,8 +279,7 @@
 						}
 					});					
 				}
-				if (action == "edit") {
-			}
+				
 		}
 	});
 
@@ -305,11 +304,15 @@
 				}
 			});
 		});
-
-		if (kodeToko.length > 6 || kodeToko.length < 6) {
+		$("#formPelajaran").on("submit",function(event){
+			event.preventDefault();
+			var action = $("#action").val(); // get value
+			var kodeToko = $("#kodeToko").val();
+		if (action == "edit") {
+			if (kodeToko.length > 5 || kodeToko.length < 5) {
 					alert('Karakter harus 6 digit');
 				}else{
-					$("#formPelajaran").on("submit",function(event){
+					
 					$.ajax({
 						url:"/toko/update",
 						method:"POST",
@@ -324,7 +327,7 @@
 							if (data.success) {
 								html ='<div class="alert alert-success alert-dismissible fade show" role="alert"><strong>Selamat! </strong>'+data.success+'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
 								$("#formPelajaran")[0].reset();
-								/*$("#bioTable").DataTable().ajax.reload();*/
+								$("#bioTable").DataTable().ajax.reload();
 							}
 							if (data.error) {
 								html ='<div class="alert alert-danger alert-dismissible fade show" role="alert"><strong></strong>'+data.error+'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
@@ -333,8 +336,11 @@
 						}
 					
 					});
-				});			
+							
 			}
+			}
+});
+		
 
 		// detail
 		$(document).on('click','.detail',function(){

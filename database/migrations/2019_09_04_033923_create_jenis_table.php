@@ -19,7 +19,7 @@ class CreateJenisTable extends Migration
             $table->string('namaJenis',20);
             $table->integer('promoJenis')->nullable();
             $table->integer('isDelete');
-            $table->date('tanggalHapus')->nullable();
+            $table->dateTime('tanggalHapus')->nullable();
             $table->timestamps();
         });
     }
