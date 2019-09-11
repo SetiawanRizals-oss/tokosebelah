@@ -22,10 +22,8 @@ class ProdukController extends Controller
                 return $button;
             })
             ->addColumn('edit',function($data){
-                if ($data->isDelete==1) {
-                    $button = '<button type="button" name="edit" id="'.$data->kodeProduk.'" class="edit btn btn-primary btn-sm">Ubah</button>';
-                    return $button;
-                }
+                $button = '<button type="button" name="edit" id="'.$data->kodeProduk.'" class="edit btn btn-primary btn-sm">Ubah</button>';
+                return $button;
             })
             ->addColumn('delete',function($data){
                 if ($data->isDelete==1) {
@@ -49,7 +47,7 @@ class ProdukController extends Controller
     	}
         $jenisz = jenis::select('kodeJenis','namaJenis')->get(); //seperti select hobi from
         $kotaz = Kota::select('kodeKota','namaKota')->get(); //seperti select hobi from
-        $tokoz = toko::select('kodeToko','namaToko')->get(); //seperti select hobi from
+        $tokoz = toko::select('kodeToko','namaToko')->where('isDelete','1')->get(); //seperti select hobi from
         return view::make('produk.index_produk')->with('jenisz',$jenisz)->with('kotaz',$kotaz)->with('tokoz',$tokoz);
         // return view('produk.index_produk',['jenisz'=>$jenisz],['kotaz'=>$kotaz],['tokoz'=>$tokoz]);
     }
@@ -65,7 +63,7 @@ class ProdukController extends Controller
             ->select('produk.namaProduk', 'produk.hargaProduk', 'Kota.namaKota','jenis.namaJenis','toko.namaToko')
             ->get();
             
-             return DataTables::of($query)->toJson();
+            return DataTables::of($query)->toJson();
         }
 
     }
@@ -101,7 +99,6 @@ class ProdukController extends Controller
 
     public function update(Request $request)
     {
-        $isDelete = 1;
         $form_data = array(
             'kodeProduk' => $request->kodeProduk,
             'namaProduk' => $request->namaProduk,
@@ -109,7 +106,6 @@ class ProdukController extends Controller
             'kodeKota' => $request->kota,
             'kodeJenis' => $request->jenis,
             'kodeToko' => $request->toko,
-            'isDelete' => $isDelete
         );
 
         produk::where('kodeProduk', '=',$request->kodeProduk)->update($form_data);
@@ -119,14 +115,21 @@ class ProdukController extends Controller
     public function detail(request $request,$kodeProduk)
     {
         if ($request->ajax()) {
-            $data = produk::where('kodeProduk', '=',$kodeProduk)->get();
-            return response()->json(['data'=>$data]);
+            $query = DB::table('produk')
+            ->join('jenis', 'jenis.kodeJenis', '=', 'produk.kodeJenis')
+            ->join('Kota', 'Kota.kodeKota', '=', 'produk.kodeKota')
+            ->join('toko', 'toko.kodeToko', '=', 'produk.kodeToko')
+            ->select('produk.namaProduk','produk.kodeProduk', 'produk.hargaProduk', 'Kota.namaKota','jenis.namaJenis','toko.namaToko')
+            ->get();
+            
+            return DataTables::of($query)->toJson();
         }
     }
 
     public function destroy($kodeProduk)
     {
-        $now = \Carbon\Carbon::now();
+        // $now = \Carbon\Carbon::now();
+        $now = date("Y-m-d H:i:s");
         $isDelete = 0;
         $form_data = array(
             'isDelete' => $isDelete,

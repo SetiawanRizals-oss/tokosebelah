@@ -22,32 +22,25 @@
 		</center>
 
 		<div style="text-align: right;">
-			<button class="btn btn-light active" onclick="window.location.href='/'">Home</button>
-			<button class="btn btn-dark">Setting</button>
+			<div class="btn-group" role="group" aria-label="Basic example">
+				<button type="button" class="btn btn-success active" onclick="window.location.href='/'">Home</button>
+				<button type="button" class="btn btn-success" onclick="window.location.href='/'">Setting</button>
+			</div>
 		</div>
 
-		<div class="btn-group btn-group-toggle" data-toggle="buttons">
-            &emsp; &emsp;&emsp; &emsp; &emsp; &emsp;
-		    <button type ="button"class="btn btn-primary btn-sm ;" onclick="window.location.href='/kota'" >Kota
-		    </button>
-		    &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; 
-
-		    <button class="btn btn-primary btn-sm" onclick="window.location.href='/jenis'">Jenis
-		    </button>
-		     &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; 
-		   
-		    <button class="btn btn-primary btn-sm" onclick="window.location.href='/toko'">Toko</button>
-		     &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; 
-		    <button class="btn btn-warning btn-sm active" onclick="window.location.href='/produk'">Produk</button>
+		<div class="btn-group" role="group" aria-label="Basic example">
+		  <button type="button" class="btn btn-success" onclick="window.location.href='/kota'">Kota</button>
+		  <button type="button" class="btn btn-success" onclick="window.location.href='/jenis'">Jenis</button>
+		  <button type="button" class="btn btn-success" onclick="window.location.href='/toko'">Toko</button>
+		  <button type="button" class="btn btn-success active" onclick="window.location.href='/produk'">Produk</button>
 		</div>
-		<br>
 		<br>
 		<h5 style="text-align: center;">Transaksi Produk</h5>
 		<div>
 			<span id="notif"></span>
 		</div>
 		<div class="container">
-			<button type="button" class="btn btn-primary" data-toggle="modal" id="buttonAdd">Tambah</button>
+			<button type="button" class="btn btn-success" data-toggle="modal" id="buttonAdd">Tambah</button>
 		</div>
 		<br>
 		<div>
@@ -293,19 +286,21 @@
 			var kodeJenis = $("#jenis").val(); //get value dari value dengan id action
 			var kodeToko = $("#toko").val(); //get value dari value dengan id action
 			if (action == "Tambah Data") {
-					if (kodeProduk.length > 5 || kodeProduk.length < 5) {
-						alert('Kode produk harus 5 digit');
-					} else if (namaProduk == "") {
-						alert('Nama produk harus diisi');
-					} else if (hargaProduk == "") {
-						alert('Harga produk harus diisi');
-					} else if (kodeKota == "") {
-						alert('Kode kota harus diisi');
-					} else if (kodeJenis == "") {
-						alert('Kode jenis harus diisi');
-					} else if (kodeToko == "") {
-						alert('Kode toko harus diisi');
-					} else {
+				if (kodeProduk.length == 0) {
+					alert('Kode produk harus diisi');
+				} else if (kodeProduk.length > 5 || kodeProduk.length < 5) {
+					alert('Kode produk harus 5 digit');
+				} else if (namaProduk == "") {
+					alert('Nama produk harus diisi');
+				} else if (hargaProduk == "") {
+					alert('Harga produk harus diisi');
+				} else if (kodeKota == "") {
+					alert('Kode kota harus diisi');
+				} else if (kodeJenis == "") {
+					alert('Kode jenis harus diisi');
+				} else if (kodeToko == "") {
+					alert('Kode toko harus diisi');
+				} else {
 					$.ajax({
 						url:"/produk/add",
 						method: "POST",
@@ -335,6 +330,10 @@
 			}
 		});
 
+		$('#myModal').on('hidden.bs.modal', function(e){
+			$("#formProduk")[0].reset() // menggunakan id form
+		});
+		
 		$(document).on('click','.edit',function(){ //jika tombol berada difile lain
 			var id = $(this).attr('id');
 			$.ajax({
@@ -359,11 +358,26 @@
 			event.preventDefault();
 			var action = $("#action").val(); //get value dari value dengan id action
 			var kodeProduk = $("#kodeProduk").val(); //get value dari value dengan id action
+			var namaProduk = $("#namaProduk").val(); //get value dari value dengan id action
+			var hargaProduk = $("#hargaProduk").val(); //get value dari value dengan id action
+			var kodeKota = $("#kota").val(); //get value dari value dengan id action
+			var kodeJenis = $("#jenis").val(); //get value dari value dengan id action
+			var kodeToko = $("#toko").val(); //get value dari value dengan id action
 			if (action == "Ubah Data") {
-				if (kodeProduk.length > 5 || kodeProduk.length < 5) {
+				if (kodeProduk.length == 0) {
+					alert('Kode produk harus diisi');
+				} else if (kodeProduk.length > 5 || kodeProduk.length < 5) {
 					alert('Kode produk harus 5 digit');
-				} else if (namaProduk.length == 0) {
+				} else if (namaProduk == "") {
 					alert('Nama produk harus diisi');
+				} else if (hargaProduk == "") {
+					alert('Harga produk harus diisi');
+				} else if (kodeKota == "") {
+					alert('Kode kota harus diisi');
+				} else if (kodeJenis == "") {
+					alert('Kode jenis harus diisi');
+				} else if (kodeToko == "") {
+					alert('Kode toko harus diisi');
 				} else {
 					$.ajax({
 						url:"/produk/update",
@@ -450,9 +464,9 @@
 					$('#kodeProdukDetail').text(html.data[0].kodeProduk);
 					$('#namaProdukDetail').text(html.data[0].namaProduk);
 					$('#hargaProdukDetail').text(html.data[0].hargaProduk);
-					$('#kotaDetail').text(html.data[0].kodeKota);
-					$('#jenisDetail').text(html.data[0].kodeJenis);
-					$('#tokoDetail').text(html.data[0].kodeToko);
+					$('#kotaDetail').text(html.data[0].namaKota);
+					$('#jenisDetail').text(html.data[0].namaJenis);
+					$('#tokoDetail').text(html.data[0].namaToko);
 					$('.modal-title').text('Lihat Data');
 					$('#actionDetail').text('Lihat Data');
 					$('#myModalDetail').modal('show');
