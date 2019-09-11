@@ -71,7 +71,7 @@ class TokoController extends Controller
 
         $kodeto = toko::where('kodeToko','=', $request->kodeToko)->update($form_data);
      
-        /*return response()->json(['success'=>'Berhasil']);*/
+        return response()->json(['success'=>'Berhasil']);
       }
 
 
@@ -92,8 +92,10 @@ class TokoController extends Controller
       public function delete($kodeToko) 
       {
        $isDelete = 1;
+       $tanggalHapus = date_default_timezone_set("Asia/Jakarta");
         $form_data = array(
-        'isDelete'=>0
+        'isDelete'=>0,
+        'tanggalHapus' => date('Y-m-d H:i:s')
       );
 
         $kodeto = toko::where('kodeToko',$kodeToko)->update($form_data);
@@ -104,8 +106,11 @@ class TokoController extends Controller
       public function aktif($kodeToko) 
       {
        $isDelete = 0;
+       $tanggalHapus = date_default_timezone_set("Asia/Jakarta");
+
         $form_data = array(
-        'isDelete'=>1
+        'isDelete'=>1,
+        'tanggalHapus' => Null
       );
 
         $kodeto = toko::where('kodeToko',$kodeToko)->update($form_data);
