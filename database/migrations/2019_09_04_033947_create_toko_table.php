@@ -18,7 +18,7 @@ class CreateTokoTable extends Migration
             $table->string('namaToko',20);
             $table->integer('ratingToko')->nullable();
             $table->integer('isDelete');
-            $table->date('tanggalHapus')->nullable();
+            $table->dateTime('tanggalHapus')->nullable();
             $table->primary('kodeToko');
             $table->timestamps();
         });
