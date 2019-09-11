@@ -22,12 +22,16 @@ class ProdukController extends Controller
                 return $button;
             })
             ->addColumn('edit',function($data){
-                $button = '<button type="button" name="edit" id="'.$data->kodeProduk.'" class="edit btn btn-primary btn-sm">Ubah</button>';
-                return $button;
+                if ($data->isDelete==1) {
+                    $button = '<button type="button" name="edit" id="'.$data->kodeProduk.'" class="edit btn btn-primary btn-sm">Ubah</button>';
+                    return $button;
+                }
             })
             ->addColumn('delete',function($data){
-                $button = '<button type="button" name="delete" id="'.$data->kodeProduk.'" class="delete btn btn-danger btn-sm">Hapus</button>';
-                return $button;
+                if ($data->isDelete==1) {
+                    $button = '<button type="button" name="delete" id="'.$data->kodeProduk.'" class="delete btn btn-danger btn-sm">Hapus</button>';
+                    return $button;
+                }
             })
             ->addColumn('aksi',function($data){
                 if ($data->isDelete==1) {
@@ -43,9 +47,9 @@ class ProdukController extends Controller
             ->rawColumns(array("detail","edit","delete","aksi"))
             ->make(true);
     	}
-        $jenisz = jenis::select('kodeJenis')->get(); //seperti select hobi from
-        $kotaz = Kota::select('kodeKota')->get(); //seperti select hobi from
-        $tokoz = toko::select('kodeToko')->get(); //seperti select hobi from
+        $jenisz = jenis::select('kodeJenis','namaJenis')->get(); //seperti select hobi from
+        $kotaz = Kota::select('kodeKota','namaKota')->get(); //seperti select hobi from
+        $tokoz = toko::select('kodeToko','namaToko')->get(); //seperti select hobi from
         return view::make('produk.index_produk')->with('jenisz',$jenisz)->with('kotaz',$kotaz)->with('tokoz',$tokoz);
         // return view('produk.index_produk',['jenisz'=>$jenisz],['kotaz'=>$kotaz],['tokoz'=>$tokoz]);
     }
@@ -122,9 +126,11 @@ class ProdukController extends Controller
 
     public function destroy($kodeProduk)
     {
+        $now = \Carbon\Carbon::now();
         $isDelete = 0;
         $form_data = array(
-            'isDelete' => $isDelete
+            'isDelete' => $isDelete,
+            'tanggalHapus' => $now
         );
         produk::where('kodeProduk','=',$kodeProduk)->update($form_data);
 

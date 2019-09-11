@@ -47,18 +47,12 @@ table,th,td{
 		</div>
 <hr>
 		<div class="btn-group btn-group-toggle" data-toggle="buttons">
-            &emsp; &emsp;&emsp; &emsp; &emsp; &emsp;
-		    <button type ="button"class="btn btn-primary btn-sm ;" onclick="window.location.href='/kota'" >Kota
+		    <button type ="button"class="btn btn-primary btn-md ;" onclick="window.location.href='/kota'" >Kota
 		    </button>
-		    &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; 
-
-		    <button class="btn btn-warning btn-sm active" onclick="window.location.href='/jenis'">Jenis
-		    </button>
-		     &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; 
-		   
-		    <button class="btn btn-primary btn-sm" onclick="window.location.href='/toko'">Toko</button>
-		     &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; 
-		    <button class="btn btn-primary btn-sm" onclick="window.location.href='/produk'">Produk</button>
+		    <button class="btn btn-warning btn-md active" onclick="window.location.href='/jenis'">Jenis
+		    </button>	   
+		    <button class="btn btn-primary btn-md" onclick="window.location.href='/toko'">Toko</button> 
+		    <button class="btn btn-primary btn-md" onclick="window.location.href='/produk'">Produk</button>
 		</div><br>
 
 	<h5 style="text-align: center;">Data Jenis</h5>
@@ -72,7 +66,7 @@ table,th,td{
 	<br>
 
 <table class="table table-striped" id="bioTable" > 
-	<thead style="text-align: center; color:black; background:forestgreen;">
+	<thead style="text-align: center; color:white; background:forestgreen;">
           <tr>
           <th>Kode Jenis </th>
           <th>Nama Jenis</th>
@@ -89,7 +83,7 @@ table,th,td{
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="formdataLabel" aria-hidden="true">
 		  <div class="modal-dialog" role="document">
 		    <div class="modal-content">
-          <form id="formJenis" onsubmit="return validasi()" >
+          <form id="formJenis" >
         @csrf
 			      <div class="modal-header">
 			        <h5 class="modal-titleAdd" id="yuuki">Input Biodata</h5>
@@ -100,7 +94,7 @@ table,th,td{
 			       
 			      	<div class="modal-body">
 
-			      		<input type="text" name="action" id="action">
+			      		<input type="hidden" name="action" id="action">
 						<table class="table table-striped">
 			<tr>
 	    		<td>Kode Jenis</td>
@@ -199,26 +193,6 @@ table,th,td{
 		</div>
 	
 
-
-<!-- modal popup delete -->
-		<div class="modal fade" id="modal_delete">
-			<div class="modal-dialog">
-				<div class="modal-content" style="margin-top: 100px;">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					</div>
-					<div class="modal-body">
-						<h4 class="modal-title" style="text-align: center;">Yakin mau diapus?</h4>
-					</div>
-					<div class="modal-footer" style="margin: 0px; border-top: 0px; text-align: center;">
-						<button class="btn btn-danger" id="delete_button">Delete</button>
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
 <!-- modal popup Action -->
 		<div class="modal fade" id="modal_action">
 			<div class="modal-dialog">
@@ -236,6 +210,10 @@ table,th,td{
 				</div>
 			</div>
 		</div>
+	
+
+
+
 	</div>
 
 
@@ -249,6 +227,14 @@ table,th,td{
 <script type="text/javascript">
 
 
+$(document).ready(function(){
+$("#modalAdd").click(function(){
+$(".modal-titleAdd").text('tambah data');
+$("#tombol_action").text('Tambah Data');
+$("#action").val('tambah');
+$("#formJenis")[0].reset();
+$("#myModal").modal('show');
+  });
 
 
 $('#bioTable').DataTable({
@@ -299,18 +285,14 @@ $('#bioTable').DataTable({
 
 
 
-$(document).ready(function(){
-$("#modalAdd").click(function(){
-$(".modal-titleAdd").text('POP UP');
-$("#tombol_action").text('Tambah Data');
-$("#action").val('tambah');
-$("#myModal").modal('show');
-  });
 
 $("#formJenis").on('submit',function(e){
 	e.preventDefault();
+
 var action = $("#action").val();
 var kodeJenis =$("#kodeJenis").val();
+var namaJenis =$("#namaJenis").val();
+var promoJenis=$("#promoJenis").val();
 
 if (action=='tambah'){
  
@@ -318,8 +300,27 @@ if (action=='tambah'){
 	  {
 	  	alert('Karakter harus 5 digit');
 	  }
+	  else if(kodeJenis=='')
+	    {
+			alert('Kode jenis tidak boleh kosong');
+			
+		}
+          
+      else if(namaJenis=='') 
+        {
+			alert('nama jenis tidak boleh kosong');
+		
+		}
 
-		  else
+       else if(promoJenis=='')
+         {
+			alert("promo jenis tidak boleh kosong");
+		
+			}
+
+
+
+	   else
 		  {
 $.ajax({
 					url:"/jenis/add",
@@ -334,7 +335,7 @@ $.ajax({
 						$("#myModal").modal('hide');
 					
 						if (data.success) {
-							html ='<div class="alert alert-success alert-dismissible fade show" role="alert"><strong>WOI DATA nya Berhasil ditambah</strong>'+data.success+'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
+							html ='<div class="alert alert-success alert-dismissible fade show" role="alert"><strong>Berhasil ditambah </strong>'+data.success+'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
 
 							//cara munculin display block
 							 $("#formJenis")[0].reset();
@@ -357,29 +358,15 @@ $.ajax({
 				}); //penutup ajax
 			
   }
-
-
-
-
-/*alert("ajax untuk tambah")*/
-} // penutup if tambah
-
-
-//
-
-
-
-
-
-
+  } 
 });
 
-});
+
 
 
 $(document).on('click','.detail',function(){
 			var id = $(this).attr('id');
-			alert(id);
+			/*alert(id);*/
 			$.ajax({
 				url:"/jenis/detail/"+id,
 				dataType: "json",
@@ -401,9 +388,12 @@ $(document).on('click','.detail',function(){
 
 
 
-$(document).on('click','.edit',function(){
+
+
+$(document).on('click','.edit',function(ei){
+	         ei.preventDefault();
 			var id = $(this).attr('id');
-			alert(id);
+			/*alert(id);*/
 			$.ajax({
 				url:"/jenis/edit/"+id,
 				dataType: "json",
@@ -423,8 +413,40 @@ $(document).on('click','.edit',function(){
 
 
 // update
-		$("#formJenis").on("submit", function(event){
-			event.preventDefault();
+		$("#formJenis").on("submit", function(ei){
+			ei.preventDefault();
+			var action = $("#action").val(); //get value dari value dengan id action
+			var kodeProduk = $("#kodeJenis").val(); //get value dari value dengan id action
+			var namaJenis =$("#namaJenis").val();
+            var promoJenis=$("#promoJenis").val();
+
+            
+			if (action == "Edit") {
+				 if (kodeJenis.length > 5 || kodeJenis.length < 5)
+	  {
+	  	alert('Karakter harus 5 digit');
+	  }
+	   else if(kodeJenis=='')
+	    {
+			alert('Kode jenis tidak boleh kosong');
+			
+		}
+          
+      else if(namaJenis=='') 
+        {
+			alert('nama jenis tidak boleh kosong');
+		
+		}
+
+       else if(promoJenis=='')
+         {
+			alert("promo jenis tidak boleh kosong");
+		
+			}
+
+
+       else
+		  {
 				$.ajax({
 					url:"/jenis/update",
 					method:"POST",
@@ -439,32 +461,23 @@ $(document).on('click','.edit',function(){
 					
 
 						if (data.success) {
-							html ='<div class="alert alert-success alert-dismissible fade show" role="alert"><strong>Telah Di Update</strong>'+data.success+'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
-
-							//cara munculin display block
-							 $("#formJenis")[0].reset();
-							
-						}
-
-						$("#bioTable").DataTable().ajax.reload();
-
-                        if (data.error) {
-							html ='<div class="alert alert-danger alert-dismissible fade show" role="alert"><strong>Error pak</strong>'+data.error+'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
-
-							//cara munculin display block
-							 $("#formJenis")[0].reset();
-							
-						}
+							html ='<div class="alert alert-success alert-dismissible fade show" role="alert"><strong>Berhasil di Update</strong>'+data.success+'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
 							$("#bioTable").DataTable().ajax.reload();
-
-						$("#notif").html(html);
-					
+							$("#formJenis")[0].reset();
+							$("#notif").html(html);
+							
+						}
+						$("#bioTable").DataTable().ajax.reload();
 					}
+
+						  
 				});
-			// }
-		});
+			 }
+			}
 
+		
 
+});
 
 
 
@@ -483,7 +496,7 @@ var id_delete;
 		$(document).on('click','.delete',function(){
 
 			lets = $(this).attr('id');
-		alert(lets);
+		/*alert(lets);*/
 			$('#modal_delete').modal('show');
 		});
   
@@ -510,7 +523,7 @@ var is_darkness;
 		$(document).on('click','.darkness',function(){
 
 			is_darkness = $(this).attr('id');
-			alert(is_darkness);
+			/*alert(is_darkness);*/
 			$('#modal_action').modal('show');
 		});
   
@@ -532,31 +545,9 @@ var is_darkness;
 		});
 
 
+});
 
 
-function validasi() {
-		var kodeJenis = $("#kodeJenis").val();
-		var namaJenis = $("#namaJenis").val();
-		var promoJenis = $("#promoJenis").val();
-				
-
-
-		if (kodeJenis=="") {
-			alert("Kode jenis tidak boleh kosong");
-			return false;
-		}
-          
-        if (namaJenis=="") {
-			alert("nama jenis tidak boleh kosong");
-			return false;
-		}
-
-        if (promoJenis=="") {
-			alert("promo jenis tidak boleh kosong");
-			return false;
-		}
-
-}
 
 
 		
