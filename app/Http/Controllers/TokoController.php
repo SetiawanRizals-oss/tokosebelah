@@ -71,7 +71,7 @@ class TokoController extends Controller
 
         $kodeto = toko::where('kodeToko','=', $request->kodeToko)->update($form_data);
      
-        return response()->json(['success'=>'Berhasil']);
+        /*return response()->json(['success'=>'Berhasil']);*/
       }
 
 

@@ -72,7 +72,7 @@
 		        </button>
 		      </div>
 		      <div class="modal-body">
-		        <input type="text" name="action" id="action"><br><br>
+		        <input type="hidden" name="action" id="action"><br><br>
 
 		        <table class="table">
 		        	<tr>
@@ -233,7 +233,7 @@
 
 	$(document).ready(function(){
 		$("#buttonAdd").click(function(){
-			$('.modal-title-add').html('PopUp');
+			$('.modal-title-add').html('Tambah Data');
 			$('#action').val('tambah');
 			$('#tombol_act').text('Tambah');
 			// $("#formPelajaran")[0].reset();

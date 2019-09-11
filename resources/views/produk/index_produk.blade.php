@@ -20,15 +20,15 @@
 		<p style="text-align: center;">Transaksi Produk</p>
 
 		<div style="text-align: right;">
-			<button class="btn btn-light active" onclick="window.location.href='/'">Home</button>
-			<button class="btn btn-dark">Setting</button>
+			<button class="btn btn-success" onclick="window.location.href='/'">Home</button>
+			<button class="btn btn-success">Setting</button>
 		</div>
 
 		<div class="btn-group btn-group-toggle" data-toggle="buttons">
-		    <button class="btn btn-light btn-sm" onclick="window.location.href='/toko'">Toko</button>
-		    <button class="btn btn-light btn-sm" onclick="window.location.href='/jenis'">Jenis</button>
-		    <button class="btn btn-light btn-sm" onclick="window.location.href='/kota'">Kota</button>
-		    <button class="btn btn-success btn-sm active" onclick="window.location.href='/produk'">Produk</button>
+		    <button class="btn btn-success btn-md" onclick="window.location.href='/toko'">Toko</button>
+		    <button class="btn btn-success btn-md" onclick="window.location.href='/jenis'">Jenis</button>
+		    <button class="btn btn-success btn-md" onclick="window.location.href='/kota'">Kota</button>
+		    <button class="btn btn-warning btn-md active" onclick="window.location.href='/produk'">Produk</button>
 		</div><hr><br>
 
 		<div>
@@ -221,6 +221,9 @@
 		</div>
 
 	</div>
+
+
+
 </body>
 <script type="text/javascript">
 	$(document).ready(function(){
